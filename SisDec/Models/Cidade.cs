@@ -20,6 +20,7 @@ namespace SisDec.Models
 
         public Estado enumEstado { get; set; }
 
+   
     }//end Cidade
 
 }//end namespace Model
