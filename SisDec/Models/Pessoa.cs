@@ -14,7 +14,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SisDec.Models
 {
-    public abstract class Pessoa
+    public class Pessoa
     {
 
         public string Bairro { get; set; }
@@ -29,7 +29,7 @@ namespace SisDec.Models
         public string Sexo { get; set; }
         public decimal Telefone { get; set; }
 
-
+        
 
 
     }//end Pessoa

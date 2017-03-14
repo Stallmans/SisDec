@@ -131,7 +131,7 @@
     <Compile Include="Repository\RepositoryConcessionaria.cs" />
     <Compile Include="Repository\RepositoryPeca.cs" />
     <Compile Include="Repository\RepositoryPecaConcessionaria.cs" />
-    <Compile Include="Repository\RepositoryPessoaFisica.cs" />
+    <Compile Include="Repository\RepositoryPessoa.cs" />
     <Compile Include="Repository\RepositoryReponsavel.cs" />
     <Compile Include="Repository\RepositoryRequisicao.cs" />
     <Compile Include="Repository\RepositoryUsuario.cs" />
@@ -147,6 +147,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Usuarios\Login.cshtml" />
+    <Content Include="Views\Pessoa\Inserir.cshtml" />
+    <Content Include="Views\Pessoa\Listar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -163,7 +165,6 @@
     <Folder Include="Views\Concessionaria\" />
     <Folder Include="Views\PecaConcessionaria\" />
     <Folder Include="Views\Peca\" />
-    <Folder Include="Views\Pessoa\" />
     <Folder Include="Views\Requisicao\" />
     <Folder Include="Views\Responsavel\" />
   </ItemGroup>

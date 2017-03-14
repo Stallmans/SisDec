@@ -3,38 +3,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SisDec.Repository;
+using SisDec.Models;
 
 namespace SisDec.Controllers
 {
     public class PessoaController : Controller
     {
+        RepositoryPessoa repositoryPessoa = new RepositoryPessoa();
+        
+
         // GET: Pessoa
-        public ActionResult Index()
+        public ActionResult Listar()
         {
-            return View();
+            return View(repositoryPessoa.BuscarTodos());
         }
 
-        // GET: Pessoa/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
         // GET: Pessoa/Create
-        public ActionResult Create()
+        public ActionResult Inserir()
         {
+            
             return View();
         }
 
         // POST: Pessoa/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Inserir(Pessoa objPessoa)
         {
             try
             {
                 // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                repositoryPessoa.Inserir(objPessoa);
+                return RedirectToAction("Listar");
             }
             catch
             {

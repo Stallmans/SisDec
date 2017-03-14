@@ -22,7 +22,12 @@ namespace SisDec.Models
         public string NomeFantasia { get; set; }
         public string RazaoSocial { get; set; }
 
-        
+        public Pessoa objPessoa { get; set; }
+
+        public PessoaJuridica()
+        {
+            objPessoa = new Pessoa();
+        }
     }//end PessoaJuridica
 
 }//end namespace Model
