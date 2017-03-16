@@ -143,20 +143,43 @@
                     <li>
                         <a href="@Url.Content("~/Home/Index")"><i class="fa fa-fw fa-dashboard"></i> Inicio</a>
                     </li>
+
+                    
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            </li>
+                        </ul>
+                    </li>
+
+
                     <li>
-                        <a href="@Url.Content("~/Cliente/Index")"><i class="fa fa-fw fa-dashboard"></i> Cliente</a>
+                        <a href="@Url.Content("~/Cliente/Listar")"><i class="fa fa-fw fa-dashboard"></i> Cliente</a>
                     </li>
                     <li>
-                        <a href="@Url.Content("~/Requisição/Index")"><i class="fa fa-fw fa-bar-chart-o"></i> Requisição</a>
+                        <a href="@Url.Content("~/Requisição/Listar")"><i class="fa fa-fw fa-bar-chart-o"></i> Requisição</a>
                     </li>
                     <li>
-                        <a href="@Url.Content("~/Responsavel/Index")"><i class="fa fa-fw fa-table"></i> Responsável</a>
+                        <a href="@Url.Content("~/Responsavel/Listar")"><i class="fa fa-fw fa-table"></i> Responsável</a>
                     </li>
                     <li>
-                        <a href="@Url.Content("~/Concessionaria/Index")"><i class="fa fa-fw fa-edit"></i> Concessionária</a>
+                        <a href="@Url.Content("~/Concessionaria/Listar")"><i class="fa fa-fw fa-edit"></i> Concessionária</a>
                     </li>
                     <li>
-                        <a href="@Url.Content("~/Peca/Index")"><i class="fa fa-fw fa-edit"></i> Peça</a>
+                        <a href="@Url.Content("~/Peca/Listar")"><i class="fa fa-fw fa-edit"></i> Peça</a>
                     </li>
                 </ul>
             </div>
@@ -190,7 +213,7 @@
     <script src="@Url.Content("~/Layout/js/plugins/morris/morris.min.js")"></script>
     <script src="@Url.Content("~/Layout/js/plugins/morris/morris-data.js")"></script>
 
-    
+
 
 </body>
 </html>

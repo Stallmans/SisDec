@@ -22,6 +22,8 @@ namespace SisDec.Models
         public string NomeFantasia { get; set; }
         public string RazaoSocial { get; set; }
 
+       
+
         
     }//end PessoaJuridica
 

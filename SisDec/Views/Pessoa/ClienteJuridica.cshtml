@@ -1,0 +1,48 @@
+﻿@model SisDec.Models.Pessoa
+
+@{
+    ViewBag.Title = "ClienteJuridica";
+}
+
+
+<h2>Inserir Novo Cliente Pessoa Juridica</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-horizontal">
+        <h4>Novo Cliente</h4>
+        <hr />
+        <div class="form-group">
+            @Html.LabelFor(model => model.objPessoaJuridica.NomeFantasia, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.objPessoaJuridica.NomeFantasia, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.objPessoaJuridica.Cnpj, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.objPessoaJuridica.Cnpj, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.objPessoaJuridica.InscricaoEstadual, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.objPessoaJuridica.InscricaoEstadual, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.objPessoaJuridica.InscricaoMunicipal, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.objPessoaJuridica.InscricaoMunicipal, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-md-10">
+                <input type="submit" value="Gravar" class="btn btn-sm btn-success" />
+            </div>
+        </div>
+    </div>
+}

@@ -8,25 +8,25 @@ using System.Configuration;
 using SisDec.Models;
 namespace SisDec.Repository
 {
-    public class RepositoryPessoaFisica
+    public class RepositoryPessoa
     {
 
-        public void Inserir()
+        public void Inserir(Pessoa pessoa)
         {
             SqlCommand comando = new SqlCommand();
             comando.CommandType = CommandType.Text;
-          //  comando.CommandText = "INSERT INTO"
-                         Conexao.Crud(comando);
+            //  comando.CommandText = "INSERT INTO"
+            Conexao.Crud(comando);
         }
 
         public void Update()
         {
             SqlCommand comando = new SqlCommand();
             comando.CommandType = CommandType.Text;
-         //   comando.CommandText = "UPDATE Cidade SET"
+            //   comando.CommandText = "UPDATE Cidade SET"
 
 
-                Conexao.Crud(comando);
+            Conexao.Crud(comando);
         }
 
         public void Delete()
@@ -36,7 +36,7 @@ namespace SisDec.Repository
             comando.CommandType = CommandType.Text;
             comando.CommandText = "DELETE FROM  WHERE ";
 
-         //   comando.Parameters.AddWithValue();
+            //   comando.Parameters.AddWithValue();
 
             Conexao.Crud(comando);
         }
@@ -59,10 +59,10 @@ namespace SisDec.Repository
                 {
                     Cidade ciade = new Cidade();
 
-          //          Concessionaria.id = Convert.ToInt32(dr["concessionariaId"]);
+                    //          Concessionaria.id = Convert.ToInt32(dr["concessionariaId"]);
 
 
-             //       listaconcessionaria.Add(concessionaria);
+                    //       listaconcessionaria.Add(concessionaria);
                 }
             }
             else
@@ -70,8 +70,33 @@ namespace SisDec.Repository
                 listaconcessionaria = null;
             }
             return listaconcessionaria;
+        }
+
+        public IList<Pessoa> BuscarTodos()
+        {
+            IList<Pessoa> ListaPessoa = new List<Pessoa>();
+
+            SqlCommand comando = new SqlCommand();
+            comando.CommandType = CommandType.Text;
+            comando.CommandText = "SELECT * FROM Pessoa";
+
+            SqlDataReader dr = Conexao.Selecionar(comando);
+
+            if (dr.HasRows)
+            {
+                while (dr.Read())
+                {
+                    Pessoa objPessoa = new Pessoa();
 
 
+                    ListaPessoa.Add(objPessoa);
+                }
+            }
+            else
+            {
+                ListaPessoa = null;
+            }
+            return ListaPessoa;
         }
     }
 }

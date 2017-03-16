@@ -14,24 +14,25 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SisDec.Models
 {
-	public abstract class Pessoa {
+    public class Pessoa
+    {
 
         public string Bairro { get; set; }
         public decimal Cep { get; set; }
-        public string Cidade { get; set; }
         public string Complemento { get; set; }
         public DateTime DataNascimento { get; set; }
         public string Email { get; set; }
         public string Endereco { get; set; }
-        public string Nome { get; set; }
         public int Numero { get; set; }
         public decimal Rendimento { get; set; }
         public string Sexo { get; set; }
         public decimal Telefone { get; set; }
 
+        public Cidade objCidade { get; set; }
 
+        public PessoaFisica objPessoaFisica { get; set; }
+        public PessoaJuridica objPessoaJuridica { get; set; }
 
-       
     }//end Pessoa
 
 }//end namespace Model
