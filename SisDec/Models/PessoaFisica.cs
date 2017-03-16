@@ -19,12 +19,8 @@ namespace SisDec.Models
         public string Nome { get; set; }
         public string Cpf { get; set; }
 
-        public Pessoa objPessoa { get; set; }
+        
 
-        public PessoaFisica()
-        {
-            objPessoa = new Pessoa();
-        }
         
     }//end PessoaFisica
 

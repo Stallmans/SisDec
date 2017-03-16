@@ -19,7 +19,6 @@ namespace SisDec.Models
 
         public string Bairro { get; set; }
         public decimal Cep { get; set; }
-        public string Cidade { get; set; }
         public string Complemento { get; set; }
         public DateTime DataNascimento { get; set; }
         public string Email { get; set; }
@@ -29,8 +28,10 @@ namespace SisDec.Models
         public string Sexo { get; set; }
         public decimal Telefone { get; set; }
 
-        
+        public Cidade objCidade { get; set; }
 
+        public PessoaFisica objPessoaFisica { get; set; }
+        public PessoaJuridica objPessoaJuridica { get; set; }
 
     }//end Pessoa
 

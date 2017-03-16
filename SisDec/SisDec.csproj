@@ -126,8 +126,10 @@
     <Compile Include="Models\Reponsavel.cs" />
     <Compile Include="Models\Requisicao.cs" />
     <Compile Include="Models\Usuarios.cs" />
+    <Compile Include="Models\ViewModelPessoa.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Conexao.cs" />
+    <Compile Include="Repository\RepositoryCidade.cs" />
     <Compile Include="Repository\RepositoryConcessionaria.cs" />
     <Compile Include="Repository\RepositoryPeca.cs" />
     <Compile Include="Repository\RepositoryPecaConcessionaria.cs" />
@@ -147,7 +149,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Usuarios\Login.cshtml" />
-    <Content Include="Views\Pessoa\Inserir.cshtml" />
+    <Content Include="Views\Peca\Listar.cshtml" />
+    <Content Include="Views\Requisicao\Listar.cshtml" />
+    <Content Include="Views\Responsavel\Listar.cshtml" />
+    <Content Include="Views\Pessoa\ClienteFisica.cshtml" />
+    <Content Include="Views\Pessoa\ClienteJuridica.cshtml" />
     <Content Include="Views\Pessoa\Listar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -164,9 +170,6 @@
     <Folder Include="layout\js\" />
     <Folder Include="Views\Concessionaria\" />
     <Folder Include="Views\PecaConcessionaria\" />
-    <Folder Include="Views\Peca\" />
-    <Folder Include="Views\Requisicao\" />
-    <Folder Include="Views\Responsavel\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
