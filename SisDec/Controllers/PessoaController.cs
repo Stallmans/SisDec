@@ -10,7 +10,8 @@ namespace SisDec.Controllers
 {
     public class PessoaController : Controller
     {
-        RepositoryPessoa repositoryPessoa = new RepositoryPessoa();
+        RepositoryClienteFisica repositoryClienteFisica = new RepositoryClienteFisica();
+        RepositoryClienteJuridica repositoryClienteJuridica = new RepositoryClienteJuridica();
         RepositoryCidade repositoryCidade = new RepositoryCidade();
 
         // GET: Pessoa
@@ -27,13 +28,13 @@ namespace SisDec.Controllers
 
         // POST: Pessoa/Create
         [HttpPost]
-        public ActionResult ClienteFisica(Pessoa objPessoa  )
+        public ActionResult ClienteFisica(PessoaFisica objPessoaFisica)
         {
             try
             {
                 // TODO: Add insert logic here
                 ViewBag.CidadeId = new SelectList(repositoryCidade.BuscarPorCidade(""), "cidadeId", "nome");
-                repositoryPessoa.Inserir(objPessoa);
+                repositoryClienteFisica.Inserir(objPessoaFisica);
                 return RedirectToAction("Listar");
             }
             catch
@@ -43,14 +44,14 @@ namespace SisDec.Controllers
         }
 
         // GET: Pessoa/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult EditarPessoaFisica(int id)
         {
             return View();
         }
 
         // POST: Pessoa/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult EditarPessoaFisica(int id, FormCollection collection)
         {
             try
             {
@@ -65,14 +66,14 @@ namespace SisDec.Controllers
         }
 
         // GET: Pessoa/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult DeletarPessoaFisica(int id)
         {
             return View();
         }
 
         // POST: Pessoa/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult DeletarPessoaFisica(int id, FormCollection collection)
         {
             try
             {
@@ -85,5 +86,76 @@ namespace SisDec.Controllers
                 return View();
             }
         }
+
+
+        // -------------------Pessoa juridica----------------------//
+
+        public ActionResult ClienteJuridica()
+        {
+            return View();
+        }
+
+        // POST: Pessoa/Create
+        [HttpPost]
+        public ActionResult ClienteJuridica(PessoaJuridica objPessoaJuridica)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+                ViewBag.CidadeId = new SelectList(repositoryCidade.BuscarPorCidade(""), "cidadeId", "nome");
+                repositoryClienteJuridica.Inserir(objPessoaJuridica);
+                return RedirectToAction("Listar");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: Pessoa/Edit/5
+        public ActionResult EditarPessoaJuridica(int id)
+        {
+            return View();
+        }
+
+        // POST: Pessoa/Edit/5
+        [HttpPost]
+        public ActionResult EditarPessoaJuridica(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add update logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: Pessoa/Delete/5
+        public ActionResult DeletarPessoaJuridica(int id)
+        {
+            return View();
+        }
+
+        // POST: Pessoa/Delete/5
+        [HttpPost]
+        public ActionResult DeletarPessoaJuridica(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
     }
 }

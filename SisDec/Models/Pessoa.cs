@@ -14,13 +14,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SisDec.Models
 {
-    public class Pessoa
+    public abstract class Pessoa
     {
-
+        
         public string Bairro { get; set; }
         public decimal Cep { get; set; }
         public string Complemento { get; set; }
+        [Display(Name = "Data de Nascimento"), DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime DataNascimento { get; set; }
+        [RegularExpression(@"^ ([\w\.\-] +)@([\w\-] +)((\.(\w){2, 3})+)$", ErrorMessage="O e-mail não é válido.")]
         public string Email { get; set; }
         public string Endereco { get; set; }
         public int Numero { get; set; }
@@ -30,8 +32,11 @@ namespace SisDec.Models
 
         public Cidade objCidade { get; set; }
 
-        public PessoaFisica objPessoaFisica { get; set; }
-        public PessoaJuridica objPessoaJuridica { get; set; }
+
+        public Pessoa()
+        {
+            objCidade = new Cidade();
+        }
 
     }//end Pessoa
 

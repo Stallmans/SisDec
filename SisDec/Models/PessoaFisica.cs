@@ -14,14 +14,16 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SisDec.Models
 {
-	public class PessoaFisica : Pessoa {
-
+    public class PessoaFisica : Pessoa
+    {
+        [Required(ErrorMessage ="O Nome deve ser preenchido.")]
         public string Nome { get; set; }
+
         public string Cpf { get; set; }
 
-        
 
-        
+
+
     }//end PessoaFisica
 
 }//end namespace Model
