@@ -94,6 +94,17 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Layout\charts.html" />
+    <Content Include="Layout\error.html" />
+    <Content Include="Layout\faq.html" />
+    <Content Include="Layout\guidely.html" />
+    <Content Include="Layout\icons.html" />
+    <Content Include="Layout\index.html" />
+    <Content Include="Layout\login.html" />
+    <Content Include="Layout\pricing.html" />
+    <Content Include="Layout\reports.html" />
+    <Content Include="Layout\shortcodes.html" />
+    <Content Include="Layout\signup.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -164,10 +175,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="layout\css\" />
-    <Folder Include="layout\font-awesome\" />
-    <Folder Include="layout\fonts\" />
-    <Folder Include="layout\js\" />
+    <Folder Include="Layout\css\" />
+    <Folder Include="Layout\font\" />
+    <Folder Include="Layout\img\" />
+    <Folder Include="Layout\js\" />
     <Folder Include="Views\Concessionaria\" />
     <Folder Include="Views\PecaConcessionaria\" />
   </ItemGroup>
