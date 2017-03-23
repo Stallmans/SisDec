@@ -14,12 +14,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SisDec.Models
 {
-    public class Usuarios : Pessoa
+    public class Usuarios
     {
+        public int IdUsuario { get; set; }
         public string Login { get; set; }
         public int Senha { get; set; }
+        public string Email { get; set; }
+        public string Nome { get; set; }
 
-       
+        [Display(Name ="Responsável")]
+        public Reponsavel enumReponsavel { get; set; }
+
     }//end Usuarios
 
 }//end namespace Model

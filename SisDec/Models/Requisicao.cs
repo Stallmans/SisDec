@@ -20,8 +20,11 @@ namespace SisDec.Models
         public DateTime DataRequisicao { get; set; }
         public string Finalidade { get; set; }
         public int NumeroRequisicao { get; set; }
+        public int Estado { get; set; }
 
-        
+        public Cliente ObjCliente { get; set; }
+
+
     }//end Requisicao
 
 }//end namespace Model

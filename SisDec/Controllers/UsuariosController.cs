@@ -3,43 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SisDec.Repository;
+using SisDec.Models;
 
 namespace SisDec.Controllers
 {
     public class UsuariosController : Controller
     {
-        // GET: Usuarios
-        public ActionResult Index()
+
+        RepositoryUsuario repositoryUsuario = new RepositoryUsuario();
+
+        public ActionResult Listar()
         {
-            return View();
+            return View(repositoryUsuario.BuscarTodos());
         }
 
-        // GET: Usuarios/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
+        
         // GET: Usuarios/Create
-        public ActionResult Create()
+        public ActionResult Inserir()
         {
             return View();
         }
 
         // POST: Usuarios/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Usuarios objUsuario)
         {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            repositoryUsuario.Inserir(objUsuario);
+            return RedirectToAction("Listar");
+           
         }
 
         // GET: Usuarios/Edit/5
@@ -52,38 +44,31 @@ namespace SisDec.Controllers
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
-            try
-            {
-                // TODO: Add update logic here
-
+           
                 return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            
         }
 
-        // GET: Usuarios/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Login()
         {
             return View();
         }
 
-        // POST: Usuarios/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Login(FormCollection f)
         {
-            try
-            {
-                // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if (f["Login"] == "igor" && f["Senha"] == "123123")
             {
-                return View();
+                return RedirectToAction("Listar");
             }
+            else
+            {
+                ViewBag.Erro = "Erro de Autenticação";
+            }
+            return View("Login");
         }
+
+
     }
 }

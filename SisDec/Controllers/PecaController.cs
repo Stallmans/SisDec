@@ -3,87 +3,49 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SisDec.Repository;
+using SisDec.Models;
 
 namespace SisDec.Controllers
 {
     public class PecaController : Controller
     {
+        RepositoryPeca repositoryPeca = new RepositoryPeca();
+
         // GET: Peca
-        public ActionResult Index()
+        public ActionResult listar()
         {
-            return View();
+            return View(repositoryPeca.BuscarTodos());
         }
 
-        // GET: Peca/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
         // GET: Peca/Create
-        public ActionResult Create()
+        public ActionResult Inserir()
         {
             return View();
         }
 
         // POST: Peca/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Inserir(Peca objPeca)
         {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            repositoryPeca.Inserir(objPeca);
+            return RedirectToAction("Listar");
         }
 
         // GET: Peca/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Editar(int PecaId)
         {
-            return View();
+            Peca peca = repositoryPeca.BuscarPorId(PecaId);
+            return View(peca);
         }
 
         // POST: Peca/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Editar(Peca objPeca)
         {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Peca/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Peca/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            repositoryPeca.Update(objPeca);
+            return RedirectToAction("Listar");
         }
     }
 }

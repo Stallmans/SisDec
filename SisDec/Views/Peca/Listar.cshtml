@@ -1,7 +1,48 @@
-﻿
+﻿@model IEnumerable<SisDec.Models.Peca>
+
 @{
     ViewBag.Title = "Listar";
 }
 
-<h2>Listar</h2>
 
+<p>
+    @Html.ActionLink("Nova Peça", "Inserir", null, new { @class = "btn btnlg btn-success" })
+</p>
+<table class="table" id="TabelaListar">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Referencia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Valor)
+            </th>
+            <th>
+                Ação
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Referencia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Valor)
+                </td>
+                <td>
+                    <a class="btn btn-default btn-sm" href="@Url.Action("Editar","Peca",new { item.PecaId})">Editar   <i class="icon-pencil"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

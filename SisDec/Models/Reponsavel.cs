@@ -16,10 +16,16 @@ namespace SisDec.Models
 {
 	public enum Reponsavel : int {
 
-		gerenteOficina = 1,
-		gerenteFunilaria = 2,
-		secretaria = 3,
-		vendedor = 4
+        [Display(Name = "Gerente Oficina")]
+        gerenteOficina = 1,
+        [Display(Name = "Gerente Funilaria")]
+        gerenteFunilaria = 2,
+        [Display(Name = "Secretária")]
+        secretaria = 3,
+        [Display(Name = "Vendedor")]
+        vendedor = 4,
+        [Display(Name = "Consultor")]
+        consultor = 5
 
 	}//end Reponsavel
 

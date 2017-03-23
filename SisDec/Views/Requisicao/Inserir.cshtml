@@ -1,0 +1,61 @@
+﻿@model SisDec.Models.Requisicao
+
+@{
+    ViewBag.Title = "Inserir Nova Requisição";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="main">
+        <div class="main-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <div class="widget widget-nopad">
+                            <div class="widget-header">
+                                <i class="icon-list-alt"></i>
+                                <h3>Nova Requisição</h3>
+                            </div>
+                            <!-- /widget-header -->
+                            <div class="widget-content">
+                                <div class="widget big-stats-container">
+                                    <div class="widget-content">
+                                        <div class="form-horizontal">
+                                            <hr />
+
+                                            <div class="control-group">
+                                                @Html.LabelFor(model => model.NumeroRequisicao, new { @class = "control-label" })
+                                                <div class="controls">
+                                                    @Html.TextBoxFor(model => model.NumeroRequisicao, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="control-group">
+                                                @Html.LabelFor(model => model.DataRequisicao, new { @class = "control-label" })
+                                                <div class="controls">
+                                                    @Html.TextBoxFor(model => model.DataRequisicao, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            
+
+                                            <div class="form-actions">
+                                                <button type="submit" class="btn btn-primary">Salvar</button>
+                                                <button class="btn">Cancelar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /widget-content -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

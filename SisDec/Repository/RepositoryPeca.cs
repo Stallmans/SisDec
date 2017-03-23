@@ -11,44 +11,65 @@ namespace SisDec.Repository
 {
     public class RepositoryPeca
     {
-        public void Inserir()
+        public void Inserir(Peca objPeca)
         {
             SqlCommand comando = new SqlCommand();
             comando.CommandType = CommandType.Text;
-          //  comando.CommandText = "INSERT INTO"
-                     Conexao.Crud(comando);
+            comando.CommandText = "INSERT INTO Pecas (referencia,descricao,valor) values(@referencia,@descricao,@valor)";
+
+            comando.Parameters.AddWithValue("@Referencia", objPeca.Referencia);
+            comando.Parameters.AddWithValue("@Descricao", objPeca.Descricao);
+            comando.Parameters.AddWithValue("@Valor", objPeca.Valor);
+            
+            Conexao.Crud(comando);
+
         }
 
-        public void Update()
+        public void Update(Peca objPeca)
         {
             SqlCommand comando = new SqlCommand();
             comando.CommandType = CommandType.Text;
-         //   comando.CommandText = "UPDATE Paciente SET"
+            comando.CommandText = "UPDATE Pecas SET @referencia,@descricao,@valor";
 
-                Conexao.Crud(comando);
-        }
-
-        public void Delete()
-        {
-
-            SqlCommand comando = new SqlCommand();
-            comando.CommandType = CommandType.Text;
-            comando.CommandText = "DELETE FROM  WHERE ";
-
-         //   comando.Parameters.AddWithValue();
+            comando.Parameters.AddWithValue("@Referencia", objPeca.Referencia);
+            comando.Parameters.AddWithValue("@Descricao", objPeca.Descricao);
+            comando.Parameters.AddWithValue("@Valor", objPeca.Valor);
 
             Conexao.Crud(comando);
         }
 
-        public IList<Cidade> BuscarPorReferencia(string referencia)
+        public Peca BuscarPorId(int id)
         {
-            IList<Cidade> listaPeca = new List<Cidade>();
-
+            Peca objPeca = new Peca();
             SqlCommand comando = new SqlCommand();
             comando.CommandType = CommandType.Text;
-            comando.CommandText = "SELECT Referencia FROM Peca WHERE referencia LIKE @Referencia";
+            comando.CommandText = "SELECT * FROM Pecas where pecaId=@pecaId";
 
-            comando.Parameters.AddWithValue("@referencia", string.Format("%{0}%", referencia));
+            comando.Parameters.AddWithValue("pecaId", id);
+
+            SqlDataReader dr = Conexao.Selecionar(comando);
+
+            if (dr.HasRows)
+            {
+                dr.Read();
+                objPeca.PecaId = Convert.ToInt32(dr["pecaId"]);
+                objPeca.Referencia = dr["numSerie"].ToString();
+                objPeca.Descricao = dr["descricao"].ToString();
+                objPeca.Valor = Convert.ToDecimal(dr["valor"]);
+            }
+            else
+            {
+                objPeca = null;
+            }
+            return objPeca;
+        }
+
+        public IList<Peca> BuscarTodos()
+        {
+            IList<Peca> ListaPeca = new List<Peca>();
+            SqlCommand comando = new SqlCommand();
+            comando.CommandType = CommandType.Text;
+            comando.CommandText = "SELECT * FROM Pecas";
 
             SqlDataReader dr = Conexao.Selecionar(comando);
 
@@ -56,22 +77,23 @@ namespace SisDec.Repository
             {
                 while (dr.Read())
                 {
-                    Cidade peca = new Cidade();
-
-                //    Concessionaria.Id = Convert.ToInt32(dr["pecaId"]);
-
-
-                    listaPeca.Add(peca);
+                    Peca objPeca = new Peca();
+                    objPeca.Referencia = dr["Referencia"].ToString();
+                    objPeca.Descricao = dr["descricao"].ToString();
+                    objPeca.Valor = Convert.ToDecimal(dr["valor"]);
+                    ListaPeca.Add(objPeca);
                 }
             }
             else
             {
-                listaPeca = null;
+                ListaPeca = null;
             }
-            return listaPeca;
-
-
+            dr.Close();
+            return ListaPeca;
         }
 
     }
+
+
+
 }

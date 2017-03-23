@@ -11,45 +11,43 @@ namespace SisDec.Repository
 {
     public class RepositoryUsuario
     {
-        public void Inserir()
+        public void Inserir(Usuarios objUsuario)
         {
             SqlCommand comando = new SqlCommand();
             comando.CommandType = CommandType.Text;
-           // comando.CommandText = "INSERT INTO"
-                         Conexao.Crud(comando);
-        }
+            comando.CommandText = "INSERT INTO Usuarios (nome,login,senha,email,responsavel) values(@nome,@login,@senha,@email,@responsavel)";
 
-        public void Update()
-        {
-            SqlCommand comando = new SqlCommand();
-            comando.CommandType = CommandType.Text;
-           // comando.CommandText = "UPDATE Cidade SET"
-
-
-                Conexao.Crud(comando);
-        }
-
-        public void Delete()
-        {
-
-            SqlCommand comando = new SqlCommand();
-            comando.CommandType = CommandType.Text;
-            comando.CommandText = "DELETE FROM  WHERE ";
-
-           // comando.Parameters.AddWithValue();
+            comando.Parameters.AddWithValue("@nome", objUsuario.Nome);
+            comando.Parameters.AddWithValue("@login", objUsuario.Login);
+            comando.Parameters.AddWithValue("@senha", objUsuario.Senha);
+            comando.Parameters.AddWithValue("@email", objUsuario.Email);
+            comando.Parameters.AddWithValue("@responsavel", objUsuario.enumReponsavel);
 
             Conexao.Crud(comando);
         }
 
-        public IList<Cidade> BuscarPorConcessionaria(string concessionaria)
+        public void Update(Usuarios objUsuario)
         {
-            IList<Cidade> listaconcessionaria = new List<Cidade>();
+            SqlCommand comando = new SqlCommand();
+            comando.CommandType = CommandType.Text;
+            comando.CommandText = "INSERT INTO Usuarios (nome,login,senha,email,responsavel) values(@nome,@login,@senha,@email,@responsavel)";
+
+            comando.Parameters.AddWithValue("@nome", objUsuario.Nome);
+            comando.Parameters.AddWithValue("@login", objUsuario.Login);
+            comando.Parameters.AddWithValue("@senha", objUsuario.Senha);
+            comando.Parameters.AddWithValue("@email", objUsuario.Email);
+            comando.Parameters.AddWithValue("@responsavel", objUsuario.enumReponsavel);
+
+            Conexao.Crud(comando);
+        }
+
+        public IList<Usuarios> BuscarTodos()
+        {
+            IList<Usuarios> ListaUsuarios = new List<Usuarios>();
 
             SqlCommand comando = new SqlCommand();
             comando.CommandType = CommandType.Text;
-            comando.CommandText = "SELECT Concessionaria FROM Concessionaria WHERE concessionaria LIKE @Concessionaria";
-
-            comando.Parameters.AddWithValue("@concessionaria", string.Format("%{0}%", concessionaria));
+            comando.CommandText = "SELECT * FROM Usuarios";
 
             SqlDataReader dr = Conexao.Selecionar(comando);
 
@@ -57,21 +55,20 @@ namespace SisDec.Repository
             {
                 while (dr.Read())
                 {
-                    Cidade ciade = new Cidade();
-
-                   // Concessionaria.id = Convert.ToInt32(dr["concessionariaId"]);
-
-
-                    //listaconcessionaria.Add(concessionaria);
+                    Usuarios objUsuarios = new Usuarios();
+                    objUsuarios.IdUsuario = Convert.ToInt32(dr["IdUsuario"]);
+                    objUsuarios.Nome = dr["Nome"].ToString();
+                    objUsuarios.Email = dr["Cpf"].ToString();
+                    objUsuarios.enumReponsavel = (Reponsavel)Enum.Parse(typeof(Reponsavel),dr ["responsavel"].ToString());
+  
+                    ListaUsuarios.Add(objUsuarios);
                 }
             }
             else
             {
-                listaconcessionaria = null;
+                ListaUsuarios = null;
             }
-            return listaconcessionaria;
-
-
+            return ListaUsuarios;
         }
     }
 }

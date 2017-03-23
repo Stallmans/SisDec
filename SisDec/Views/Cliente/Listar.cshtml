@@ -1,0 +1,64 @@
+﻿@model IEnumerable<SisDec.Models.Cliente>
+
+@{
+    ViewBag.Title = "Listar";
+}
+
+<ol class="breadcrumb">
+    <li class="active">
+        <b>
+            <a href="@Url.Content("~/Home/Index")">Inicio</a> /
+            <a href="@Url.Content("~/Pessoa/Listar")">Listar Clientes</a>
+        </b>
+    </li>
+</ol>
+
+<p>
+    @Html.ActionLink("Novo Cliente", "ClienteFisica", null, new { @class = "btn btnlg btn-success" })
+</p>
+<table class="table" id="TabelaListar">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cpf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rg)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataNascimento)
+            </th>
+            <th>
+                Ação
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cpf)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rg)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataNascimento)
+                </td>
+                <td>
+                    <a class="btn btn-default btn-sm" href="@Url.Action("EditarClienteFisica","Pessoa",new { item.IdPessoaFisica})">Editar   <i class="icon-pencil"></i></a>
+                    <a class="btn" btn-default btn-sm href="@Url.Action("PartView","Pessoa",new
+                                                       { item.IdPessoaFisica })">Requsições<i class="icon-list-alt"</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

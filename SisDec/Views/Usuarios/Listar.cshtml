@@ -1,0 +1,49 @@
+﻿@model IEnumerable<SisDec.Models.Usuarios>
+
+
+@{
+    ViewBag.Title = "Listar";
+}
+
+
+<p>
+    @Html.ActionLink("Novo Usuário", "Inserir", null, new { @class = "btn btnlg btn-success" })
+</p>
+<table class="table" id="TabelaListar">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.enumReponsavel)
+            </th>
+            <th>
+                Ação
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.enumReponsavel)
+                </td>
+                <td>
+                    <a class="btn btn-default btn-sm" href="@Url.Action("Editar","Usuarios",new { item.IdUsuario})">Editar   <i class="icon-pencil"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -17,7 +17,6 @@ namespace SisDec.Models
 	public class Peca {
 
         public string Descricao { get; set; }
-        public bool PecaB { get; set; }
         public int PecaId { get; set; }
         public string Referencia { get; set; }
         public decimal Valor { get; set; }
