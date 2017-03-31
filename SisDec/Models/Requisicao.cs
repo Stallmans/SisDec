@@ -18,7 +18,6 @@ namespace SisDec.Models
 
         public DateTime DataPedido { get; set; }
         public DateTime DataRequisicao { get; set; }
-        public string Finalidade { get; set; }
         public int NumeroRequisicao { get; set; }
         public int Estado { get; set; }
 

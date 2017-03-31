@@ -1,36 +1,61 @@
 ﻿@model SisDec.Models.Usuarios
-@{
-    ViewBag.Title = "Login";
-}
+
+
+<link href="~/Layout/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="~/Layout/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
+
+<link href="~/Layout/css/font-awesome.css" rel="stylesheet">
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
+
+<link href="~/Layout/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="~/Layout/css/pages/signin.css" rel="stylesheet" type="text/css">
+
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </a><a class="brand" href="@Url.Content("/Home/Index")"><img src="~/Layout/img/logoford.jpg" width="135" height="100" /> <p>Sistemas de Informação de Apoio a Decisão no Controle de Peças </a>
+        </div>
+    </div>
+</div>
 
 @using (Html.BeginForm())
 {
-    <div class="form-horizontal">
-        <center>
-            <h4>Autenticação Obrigatoria!</h4>
-            <img width="250px" height="100px" src="~/imagens/logoford.jpg">
 
-            <hr />
-            <div class="form-group">
-        
-                <div class="col-md-12">
-                    @Html.TextBoxFor(model => model.Login, new { @class = "form-control", placeholder = "Login" })
-                </div>
-            </div>
-            <div class="form-group">
+    <div class="account-container">
+
+        <div class="content clearfix">
+
+
+            <h2>Autenticação obrigatoria!</h2>
+            <img width="250" height="100" src="~/imagens/logoford.jpg">
+            <div class="login-fields">
+                <br />
+
+                <p>Por favor insira seus dados.</p>
                 
-                <div class="col-md-12">
-                    @Html.PasswordFor(model => model.Senha, new { @class = "form-control", placeholder = "Senha" })
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-8">
-                    <input type="submit" value="Logar" class="btn btn-lg btn-success" />
-                </div>
-            </div>
-                        <p> teste</p>
-        </center>
-    </div>
+                <div class="field">
+                    @Html.TextBoxFor(model => model.Login, new { @class = "login username-field", placeholder = "Login" })
+                </div> <!-- /field -->
+
+                <div class="field">
+                    @Html.PasswordFor(model => model.Senha, new { @class = "login password-field", placeholder = "Senha" })
+                </div> <!-- /password -->
+
+            </div> <!-- /login-fields -->
+
+            <div class="login-actions">
+
+                <button class="button btn btn-success btn-large">Logar</button>
+
+            </div> <!-- .actions -->
+
+        </div> <!-- /content -->
+
+    </div> <!-- /account-container -->
 }
+
 
 

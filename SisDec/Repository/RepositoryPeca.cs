@@ -15,7 +15,7 @@ namespace SisDec.Repository
         {
             SqlCommand comando = new SqlCommand();
             comando.CommandType = CommandType.Text;
-            comando.CommandText = "INSERT INTO Pecas (referencia,descricao,valor) values(@referencia,@descricao,@valor)";
+            comando.CommandText = "INSERT INTO Peca (referencia,descricao,valor) values(@referencia,@descricao,@valor)";
 
             comando.Parameters.AddWithValue("@Referencia", objPeca.Referencia);
             comando.Parameters.AddWithValue("@Descricao", objPeca.Descricao);
@@ -29,8 +29,9 @@ namespace SisDec.Repository
         {
             SqlCommand comando = new SqlCommand();
             comando.CommandType = CommandType.Text;
-            comando.CommandText = "UPDATE Pecas SET @referencia,@descricao,@valor";
+            comando.CommandText = "UPDATE Peca SET referencia=@referencia,descricao=@descricao,valor=@valor where pecaId=@pecaId";
 
+            comando.Parameters.AddWithValue("@pecaId", objPeca.PecaId);
             comando.Parameters.AddWithValue("@Referencia", objPeca.Referencia);
             comando.Parameters.AddWithValue("@Descricao", objPeca.Descricao);
             comando.Parameters.AddWithValue("@Valor", objPeca.Valor);
@@ -43,7 +44,7 @@ namespace SisDec.Repository
             Peca objPeca = new Peca();
             SqlCommand comando = new SqlCommand();
             comando.CommandType = CommandType.Text;
-            comando.CommandText = "SELECT * FROM Pecas where pecaId=@pecaId";
+            comando.CommandText = "SELECT * FROM Peca where pecaId=@pecaId";
 
             comando.Parameters.AddWithValue("pecaId", id);
 
@@ -53,9 +54,9 @@ namespace SisDec.Repository
             {
                 dr.Read();
                 objPeca.PecaId = Convert.ToInt32(dr["pecaId"]);
-                objPeca.Referencia = dr["numSerie"].ToString();
-                objPeca.Descricao = dr["descricao"].ToString();
-                objPeca.Valor = Convert.ToDecimal(dr["valor"]);
+                objPeca.Referencia = dr["Referencia"].ToString();
+                objPeca.Descricao = dr["Descricao"].ToString();
+                objPeca.Valor = Convert.ToDecimal(dr["Valor"]);
             }
             else
             {
@@ -69,7 +70,7 @@ namespace SisDec.Repository
             IList<Peca> ListaPeca = new List<Peca>();
             SqlCommand comando = new SqlCommand();
             comando.CommandType = CommandType.Text;
-            comando.CommandText = "SELECT * FROM Pecas";
+            comando.CommandText = "SELECT * FROM Peca";
 
             SqlDataReader dr = Conexao.Selecionar(comando);
 
@@ -78,6 +79,7 @@ namespace SisDec.Repository
                 while (dr.Read())
                 {
                     Peca objPeca = new Peca();
+                    objPeca.PecaId = Convert.ToInt32(dr["pecaId"]);
                     objPeca.Referencia = dr["Referencia"].ToString();
                     objPeca.Descricao = dr["descricao"].ToString();
                     objPeca.Valor = Convert.ToDecimal(dr["valor"]);

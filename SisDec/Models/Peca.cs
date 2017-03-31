@@ -16,10 +16,18 @@ namespace SisDec.Models
 {
 	public class Peca {
 
+        [Required (ErrorMessage = "O campo Descrição deve ser preenchido!")]
+        [StringLength(30, MinimumLength = 10, ErrorMessage = "Nome deve ter entre 10 e 30 caracteres!")]
         public string Descricao { get; set; }
+
         public int PecaId { get; set; }
+
+        [Required (ErrorMessage = "O campo Referencia deve ser preenchido!")]
         public string Referencia { get; set; }
+
+        [Required(ErrorMessage = "O campo Valor deve ser preenchido!")]
         public decimal Valor { get; set; }
+
         public IList<PecaConcessionaria> ListaDePecaConcessionaria { get; set; }
 
         

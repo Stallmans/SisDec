@@ -19,15 +19,26 @@ namespace SisDec.Controllers
 
         public ActionResult Inserir()
         {
+            ViewBag.CidadeId = new SelectList(repositoryCidade.BuscarPorCidade(""), "cidadeId", "nome");
             return View();
         }
 
         [HttpPost]
-        public ActionResult Inserir(Cliente objCliente)
+        public ActionResult Inserir(Cliente objCliente, string tipoPessoa, int CidadeId)
         {
+            if (tipoPessoa == "fisica")
+            {
+                objCliente.tipoPessoa = 1;
+            }
+            else if (tipoPessoa == "juridica")
+            
+            {
+                objCliente.tipoPessoa = 2;
+            }
 
-               objCliente.Gravar();
-                return RedirectToAction("Listar");
+            objCliente.objCidade.CidadeId = CidadeId;
+            objCliente.Gravar();
+            return RedirectToAction("Listar");
 
         }
 
@@ -76,7 +87,7 @@ namespace SisDec.Controllers
         }
 
 
-        
+
 
     }
 }

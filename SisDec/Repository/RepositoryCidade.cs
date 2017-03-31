@@ -16,7 +16,7 @@ namespace SisDec.Repository
 
             SqlCommand comando = new SqlCommand();
             comando.CommandType = CommandType.Text;
-            comando.CommandText = "SELECT * from Cidades where cidadeId=@cidadeId";
+            comando.CommandText = "SELECT * from Cidade where cidadeId=@cidadeId";
 
             comando.Parameters.AddWithValue("cidadeId", id);
 
@@ -43,7 +43,7 @@ namespace SisDec.Repository
 
             SqlCommand comando = new SqlCommand();
             comando.CommandType = CommandType.Text;
-            comando.CommandText = "SELECT * from Cidades where nome like @cidade";
+            comando.CommandText = "SELECT * from Cidade where nome like @cidade";
 
             comando.Parameters.AddWithValue("@cidade", string.Format("%{0}", cidade));
 

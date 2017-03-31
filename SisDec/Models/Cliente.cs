@@ -32,12 +32,15 @@ namespace SisDec.Models
 
         public string Bairro { get; set; }
 
+        [Required(ErrorMessage = "O CEP deve ser informado.!")]
+        [RegularExpression(@"^\d{8}$|^\d{5}-\d{3}$", ErrorMessage = "O código postal deverá estar no formato 00000000 ou 00000-000")]
         public decimal Cep { get; set; }
 
         public string Complemento { get; set; }
 
         [Required]
-        [Display(Name = "Data de Nascimento"), DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Data de Nascimento")]
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime DataNascimento { get; set; }
 
         [RegularExpression(@"^ ([\w\.\-] +)@([\w\-] +)((\.(\w){2, 3})+)$", ErrorMessage = "O e-mail não é válido.")]
@@ -49,8 +52,6 @@ namespace SisDec.Models
 
         public int Numero { get; set; }
 
-        [DisplayName("Sexo")]
-        public Sexo enumSexo { get; set; }
 
         [Required]
         [Phone]
@@ -67,8 +68,13 @@ namespace SisDec.Models
         //fim pessoa Juridica
 
 
+        [DisplayName("Sexo")]
+        public Sexo enumSexo { get; set; }
 
+        [DisplayName("Tipo Pessoa")]
+        public TipoPessoa enumTipoPessoa { get; set; }
 
+        [DisplayName("Cidade")]
         public Cidade objCidade { get; set; }
 
 

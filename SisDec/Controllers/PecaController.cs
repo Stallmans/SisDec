@@ -29,8 +29,10 @@ namespace SisDec.Controllers
         [HttpPost]
         public ActionResult Inserir(Peca objPeca)
         {
+
             repositoryPeca.Inserir(objPeca);
             return RedirectToAction("Listar");
+
         }
 
         // GET: Peca/Edit/5

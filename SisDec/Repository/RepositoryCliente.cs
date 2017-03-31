@@ -13,18 +13,54 @@ namespace SisDec.Repository
 
         public void Inserir(Cliente objCliente)
         {
+            if (objCliente.tipoPessoa == 1)
+            {
+                SqlCommand comando = new SqlCommand();
+                comando.CommandType = CommandType.Text;
+                comando.CommandText = "INSERT INTO Cliente (nome, cpf, endereco, dataNascimento, sexo, rg, bairro,cep,complemento,email,tipoPessoa, numero, telefone,cidadeId) Values(@nome, @cpf, @endereco, @dataNascimento, @sexo, @rg, @bairro, @cep, @complemento, @email, @tipoPessoa, @numero, @telefone, @cidadeId)";
 
-            SqlCommand comando = new SqlCommand("[dbo].[procPessoaFisicaInserir]");
-            comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@nome", objCliente.Nome);
+                comando.Parameters.AddWithValue("@cpf", objCliente.Cpf);
+                comando.Parameters.AddWithValue("@endereco", objCliente.Endereco);
+                comando.Parameters.AddWithValue("@dataNascimento", objCliente.DataNascimento);
+                comando.Parameters.AddWithValue("@sexo", objCliente.enumSexo);
+                comando.Parameters.AddWithValue("@rg", objCliente.Rg);
+                comando.Parameters.AddWithValue("@bairro", objCliente.Bairro);
+                comando.Parameters.AddWithValue("@cep", objCliente.Cep);
+                comando.Parameters.AddWithValue("@complemento", objCliente.Complemento);
+                comando.Parameters.AddWithValue("@email", objCliente.Email);
+                comando.Parameters.AddWithValue("@tipoPessoa", objCliente.tipoPessoa);
+                comando.Parameters.AddWithValue("@numero", objCliente.Numero);
+                comando.Parameters.AddWithValue("@telefone", objCliente.Telefone);
+                comando.Parameters.AddWithValue("@cidadeId", objCliente.objCidade.CidadeId);
 
-            comando.Parameters.AddWithValue("@nome", objCliente.Nome);
-            comando.Parameters.AddWithValue("@cpf", objCliente.Cpf);
-            comando.Parameters.AddWithValue("@dataNascimento", objCliente.DataNascimento);
-            comando.Parameters.AddWithValue("@rg", objCliente.Rg);
+
+                Conexao.Crud(comando);
+            }
+            else
+            {
+                SqlCommand comando = new SqlCommand();
+                comando.CommandType = CommandType.Text;
+                comando.CommandText = "INSERT INTO Cliente (Nome, Bairro, Cnpj, Email, Endereco, Inscricaoestadual, Inscricaomunicipal, Numero, Telefone, TipoPessoa, CidadeID) values @Nome, @Bairro, @Cnpj, @Email, @Endereco, @Inscricaoestadual, @Inscricaomunicipal, @Numero, @Telefone, @TipoPessoa, @CidadeID";
+
+                comando.Parameters.AddWithValue("@Nome", objCliente.Nome);
+                comando.Parameters.AddWithValue("@Bairro", objCliente.Bairro);
+                comando.Parameters.AddWithValue("@Cnpj", objCliente.Cnpj);
+                comando.Parameters.AddWithValue("@endereco", objCliente.Endereco);
+                comando.Parameters.AddWithValue("@email", objCliente.Email);
+                comando.Parameters.AddWithValue("@Inscricaoestadual", objCliente.InscricaoEstadual);
+                comando.Parameters.AddWithValue("@Inscricaomunicipal", objCliente.InscricaoMunicipal);
+                comando.Parameters.AddWithValue("@Telefone", objCliente.Telefone);
+                comando.Parameters.AddWithValue("@numero", objCliente.Numero);
+                comando.Parameters.AddWithValue("@TipoPessoa", objCliente.tipoPessoa);
+                comando.Parameters.AddWithValue("@cidadeId", objCliente.objCidade.CidadeId);
 
 
-            Conexao.Crud(comando);
-            
+                Conexao.Crud(comando);
+            }
+
+
+
         }
 
         public void Update()
@@ -48,7 +84,7 @@ namespace SisDec.Repository
             Conexao.Crud(comando);
         }
 
-        
+
 
         public IList<Cliente> BuscarTodos()
         {
@@ -56,7 +92,7 @@ namespace SisDec.Repository
 
             SqlCommand comando = new SqlCommand();
             comando.CommandType = CommandType.Text;
-            comando.CommandText = "SELECT * FROM tblPessoaFisica";
+            comando.CommandText = "SELECT * FROM Cliente";
 
             SqlDataReader dr = Conexao.Selecionar(comando);
 
