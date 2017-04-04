@@ -16,13 +16,18 @@ namespace SisDec.Models
 {
 	public class Requisicao {
 
-        public DateTime DataPedido { get; set; }
-        public DateTime DataRequisicao { get; set; }
+        [Display(Name = "Numero da Requisição")]
         public int NumeroRequisicao { get; set; }
-        public int Estado { get; set; }
+        [Display(Name = "Data do Pedido")]
+        public DateTime DataPedido { get; set; }
 
+        public DateTime DataRequisicao { get; set; }
+        public string Finalidade { get; set; }
+        //public int Estado { get; set; }
+
+        public List<PecaRequisicao> ListaPecaRequisicao { get; set; }
         public Cliente ObjCliente { get; set; }
-
+        public Peca objPeca { get; set; }
 
     }//end Requisicao
 

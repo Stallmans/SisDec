@@ -339,6 +339,7 @@
     <Content Include="Scripts\jquery.maskedinput.js" />
     <Content Include="Scripts\jquery.maskedinput.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\myScripts.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -402,6 +403,8 @@
     <Content Include="Views\Usuarios\Editar.cshtml" />
     <Content Include="Views\Cliente\EditarClienteFisica.cshtml" />
     <Content Include="Views\Usuarios\Login.cshtml" />
+    <Content Include="Views\Requisicao\Nova.cshtml" />
+    <Content Include="Views\Cliente\DetalhesClienteFisica.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

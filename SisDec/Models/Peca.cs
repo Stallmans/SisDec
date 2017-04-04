@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using SisDec.Repository;
 
 namespace SisDec.Models
 {
@@ -28,7 +29,28 @@ namespace SisDec.Models
         [Required(ErrorMessage = "O campo Valor deve ser preenchido!")]
         public decimal Valor { get; set; }
 
+        public int Quantidade { get; set; }
+
         public IList<PecaConcessionaria> ListaDePecaConcessionaria { get; set; }
+
+        public IList<Peca> BuscarTodos()
+        {
+            return new RepositoryPeca().BuscarTodos();
+        }
+
+        public void Gravar ()
+        {
+            RepositoryPeca repositoryPeca = new RepositoryPeca();
+            if (PecaId == 0)
+            {
+                repositoryPeca.Inserir(this);
+            }
+            else
+            {
+                repositoryPeca.Update(this);
+            }
+            
+        }
 
         
     }//end Peca

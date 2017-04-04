@@ -11,6 +11,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.Collections;
+using SisDec.Repository;
+using System.ComponentModel;
 
 namespace SisDec.Models
 {
@@ -18,9 +21,18 @@ namespace SisDec.Models
         public int CidadeId { get; set; }
         public string Nome { get; set; }
 
+        internal IEnumerable BuscarPorNome(string nome)
+        {
+            return new RepositoryCidade().BuscarPorCidade(nome);
+        }
+
+        [DisplayName("Estado")]
         public Estado enumEstado { get; set; }
 
-   
+        internal Cidade BuscarPorId(int cidadeId)
+        {
+            return new RepositoryCidade().BuscarPorId(cidadeId);
+        }
     }//end Cidade
 
 }//end namespace Model

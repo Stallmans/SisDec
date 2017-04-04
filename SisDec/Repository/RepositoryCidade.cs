@@ -37,6 +37,33 @@ namespace SisDec.Repository
             return objCidade;
         }
 
+        internal Cidade BuscarPorId(int cidadeId)
+        {
+            Cidade objCidade = new Cidade();
+
+            SqlCommand comando = new SqlCommand();
+            comando.CommandType = CommandType.Text;
+            comando.CommandText = "SELECT * from Cidade where cidadeId=@cidadeId";
+
+            comando.Parameters.AddWithValue("cidadeId", cidadeId);
+
+            SqlDataReader dr = Conexao.Selecionar (comando);
+
+            if (dr.HasRows)
+            {
+                dr.Read();
+                objCidade.CidadeId = Convert.ToInt32(dr["cidadeId"]);
+                objCidade.Nome = dr["Nome"].ToString();
+                objCidade.enumEstado = (Estado)Enum.Parse(typeof(Estado), dr["estado"].ToString());
+            }
+            else
+            {
+                objCidade = null;
+            }
+
+            return objCidade;
+        }
+
         public IList<Cidade> BuscarPorCidade(string cidade)
         {
             IList<Cidade> ListaCidade = new List<Cidade>();

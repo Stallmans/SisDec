@@ -8,14 +8,15 @@
     <li class="active">
         <b>
             <a href="@Url.Content("~/Home/Index")">Inicio</a> /
-            <a href="@Url.Content("~/Pessoa/Listar")">Listar Clientes</a>
+            <a href="@Url.Content("~/Cliente/Listar")">Listar Clientes</a>
         </b>
     </li>
 </ol>
 
 <p>
-    @Html.ActionLink("Novo Cliente", "ClienteFisica", null, new { @class = "btn btnlg btn-success" })
+    @Html.ActionLink("Novo Cliente", "Inserir", null, new { @class = "btn btnlg btn-success" })
 </p>
+
 <table class="table" id="TabelaListar">
     <thead>
         <tr>
@@ -24,12 +25,13 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Cpf)
+                @Html.DisplayNameFor(model => model.Cnpj)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Rg)
+                @Html.DisplayNameFor(model => model.tipoPessoa)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DataNascimento)
+                @Html.DisplayNameFor(model => model.objCidade.enumEstado)
             </th>
             <th>
                 Ação
@@ -46,17 +48,26 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Cpf)
+                    @Html.DisplayFor(modelItem => item.Cnpj)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Rg)
+                    @Html.DisplayFor(modelItem => item.tipoPessoa)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DataNascimento)
+                    @Html.DisplayFor(modelItem => item.objCidade.enumEstado)
                 </td>
                 <td>
-                    <a class="btn btn-default btn-sm" href="@Url.Action("EditarClienteFisica","Pessoa",new { item.IdPessoaFisica})">Editar   <i class="icon-pencil"></i></a>
-                    <a class="btn" btn-default btn-sm href="@Url.Action("PartView","Pessoa",new
-                                                       { item.IdPessoaFisica })">Requsições<i class="icon-list-alt"</a>
+                    @if (item.tipoPessoa.Equals("pessoaFisica"))
+                    {
+                        <a class="btn btn-default btn-sm" href="@Url.Action("EditarClienteFisica","Cliente",new { item.IdCliente})">Editar   <i class="icon-pencil"></i></a>
+                        <a class="btn btn-default btn-sm" href="@Url.Action("DetalhesClienteFisica","Cliente",new { item.IdCliente})">Detalhes   <i class="icon-reorder"></i></a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-default btn-sm" href="@Url.Action("EditarClienteJuridica","Cliente",new { item.IdCliente})">Editar   <i class="icon-pencil"></i></a>
+                        <a class="btn btn-default btn-sm" href="@Url.Action("DetalhesClienteFisica","Cliente",new { item.IdCliente})">Detalhes   <i class="icon-reorder"></i></a>
+                    }
+
                 </td>
             </tr>
         }

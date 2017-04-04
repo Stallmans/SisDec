@@ -4,90 +4,53 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SisDec.Models;
-using SisDec.Repository;
+
 
 namespace SisDec.Controllers
 {
     public class ClienteController : Controller
     {
-        RepositoryCidade repositoryCidade = new RepositoryCidade();
+
 
         public ActionResult Listar()
         {
             return View(new Cliente().BuscarTodos());
         }
 
+        public  ActionResult DetalhesClienteFisica(int idCliente)
+        {
+            return View(new Cliente().BuscarPorId(idCliente));
+        }
+
         public ActionResult Inserir()
         {
-            ViewBag.CidadeId = new SelectList(repositoryCidade.BuscarPorCidade(""), "cidadeId", "nome");
+            ViewBag.CidadeId = new SelectList(new Cidade().BuscarPorNome(""), "cidadeId", "nome");
             return View();
         }
 
         [HttpPost]
-        public ActionResult Inserir(Cliente objCliente, string tipoPessoa, int CidadeId)
+        public ActionResult Inserir(Cliente objCliente, TipoPessoa tipoPessoa, int CidadeId)
         {
-            if (tipoPessoa == "fisica")
-            {
-                objCliente.tipoPessoa = 1;
-            }
-            else if (tipoPessoa == "juridica")
             
-            {
-                objCliente.tipoPessoa = 2;
-            }
+            objCliente.tipoPessoa = tipoPessoa;
+            objCliente.objCidade = new Cidade().BuscarPorId(CidadeId);
+            objCliente.Gravar();
+            return RedirectToAction("Index");
 
-            objCliente.objCidade.CidadeId = CidadeId;
+        }
+
+        public ActionResult EditarClienteFisica(Cliente objCliente, int CidadeId)
+        {
+            objCliente.objCidade = new Cidade().BuscarPorId(CidadeId);
+            objCliente.Gravar();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EditarClienteFisica(Cliente objCliente)
+        {
             objCliente.Gravar();
             return RedirectToAction("Listar");
-
         }
-
-        // GET: Pessoa/Edit/5
-        public ActionResult Editar(int id)
-        {
-            return View();
-        }
-
-        // POST: Pessoa/Edit/5
-        [HttpPost]
-        public ActionResult Editar(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Pessoa/Delete/5
-        public ActionResult Deletar(int id)
-        {
-            return View();
-        }
-
-        // POST: Pessoa/Delete/5
-        [HttpPost]
-        public ActionResult Deletar(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-
-
-
     }
 }

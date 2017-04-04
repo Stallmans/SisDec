@@ -20,7 +20,8 @@ namespace SisDec.Models
     {
         public int IdCliente { get; set; }
 
-        public int tipoPessoa { get; set; }
+        [DisplayName("Tipo Pessoa")]
+        public TipoPessoa tipoPessoa { get; set; }
 
         [Required]
         public string Nome { get; set; }
@@ -71,8 +72,6 @@ namespace SisDec.Models
         [DisplayName("Sexo")]
         public Sexo enumSexo { get; set; }
 
-        [DisplayName("Tipo Pessoa")]
-        public TipoPessoa enumTipoPessoa { get; set; }
 
         [DisplayName("Cidade")]
         public Cidade objCidade { get; set; }
@@ -84,6 +83,10 @@ namespace SisDec.Models
         }
 
 
+        public Cliente BuscarPorId(int idCliente)
+        {
+            return new RepositoryCliente().ClientePorId(idCliente);
+        }
 
         public IList<Cliente> BuscarTodos()
         {

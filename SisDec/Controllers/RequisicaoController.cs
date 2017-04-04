@@ -20,8 +20,13 @@ namespace SisDec.Controllers
             return View();
         }
 
+        public ActionResult Inserir()
+        {
+            return View();
+        }
+
         // GET: Requisicao/Create
-        public ActionResult Create()
+        public ActionResult Nova()
         {
             return View();
         }

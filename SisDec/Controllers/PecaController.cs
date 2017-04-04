@@ -10,43 +10,44 @@ namespace SisDec.Controllers
 {
     public class PecaController : Controller
     {
-        RepositoryPeca repositoryPeca = new RepositoryPeca();
 
-        // GET: Peca
+        // Listar
         public ActionResult listar()
         {
-            return View(repositoryPeca.BuscarTodos());
+            return View(new Peca().BuscarTodos());
         }
 
 
-        // GET: Peca/Create
+        // GET
         public ActionResult Inserir()
         {
             return View();
         }
 
-        // POST: Peca/Create
+        // POST
         [HttpPost]
         public ActionResult Inserir(Peca objPeca)
         {
 
-            repositoryPeca.Inserir(objPeca);
+            objPeca.Gravar();
             return RedirectToAction("Listar");
 
         }
 
-        // GET: Peca/Edit/5
+        // GET
         public ActionResult Editar(int PecaId)
         {
+            RepositoryPeca repositoryPeca = new RepositoryPeca();
             Peca peca = repositoryPeca.BuscarPorId(PecaId);
+
             return View(peca);
         }
 
-        // POST: Peca/Edit/5
+        // POST
         [HttpPost]
         public ActionResult Editar(Peca objPeca)
         {
-            repositoryPeca.Update(objPeca);
+            objPeca.Gravar();
             return RedirectToAction("Listar");
         }
     }
