@@ -1,6 +1,6 @@
 ﻿@model SisDec.Models.Cliente
 @{
-    ViewBag.Title = "Detalhes";
+    ViewBag.Title = "DetalhesClienteJuridica";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -14,9 +14,9 @@
         </div>
     </div>
     <div class="control-group">
-        @Html.LabelFor(model => model.Cpf, new { @class = "control-label" })
+        @Html.LabelFor(model => model.Cnpj, new { @class = "control-label" })
         <div class="controls">
-            @Html.DisplayFor(model => model.Cpf, new { @class = "form-control" })
+            @Html.DisplayFor(model => model.Cnpj, new { @class = "form-control" })
         </div>
     </div>
     <div class="control-group">

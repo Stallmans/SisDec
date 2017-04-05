@@ -12,7 +12,8 @@ namespace SisDec.Repository
     {
 
         public void Inserir(Cliente objCliente)
-        {
+        { 
+            
             SqlCommand comando = new SqlCommand();
             comando.CommandType = CommandType.Text;
             comando.CommandText = "INSERT INTO Cliente (nome, cpf, endereco, dataNascimento, sexo, rg, bairro,cep,complemento,email,tipoPessoa, numero, telefone,cidadeId, Cnpj,Inscricaoestadual, Inscricaomunicipal) Values(@nome, @cpf, @endereco, @dataNascimento, @sexo, @rg, @bairro, @cep, @complemento, @email, @tipoPessoa, @numero, @telefone, @cidadeId, @Cnpj, @Inscricaoestadual, @Inscricaomunicipal)";
@@ -43,7 +44,7 @@ namespace SisDec.Repository
         {
             SqlCommand comando = new SqlCommand();
             comando.CommandType = CommandType.Text;
-            comando.CommandText = "INSERT INTO Cliente (nome, cpf, endereco, dataNascimento, sexo, rg, bairro,cep,complemento,email,tipoPessoa, numero, telefone,cidadeId, Cnpj,Inscricaoestadual, Inscricaomunicipal) Values(@nome, @cpf, @endereco, @dataNascimento, @sexo, @rg, @bairro, @cep, @complemento, @email, @tipoPessoa, @numero, @telefone, @cidadeId, @Cnpj, @Inscricaoestadual, @Inscricaomunicipal)";
+            comando.CommandText = "UPDATE Cliente set nome=@nome, cpf=@cpf, endereco=@endereco, dataNascimento=@dataNascimento, sexo=@sexo, rg=@rg, bairro=@bairro, cep=@cep, complemento=@complemento, email=@email, tipoPessoa=@tipoPessoa, numero=@numero, telefone=@telefone, cidadeId=@cidadeId, cnpj=@Cnpj, Inscricaoestadual=@Inscricaoestadual, Inscreicaomunicipal=@Inscricaomunicipal where clienteId=@clienteId";
 
             comando.Parameters.AddWithValue("@clienteId", objCliente.IdCliente);
             comando.Parameters.AddWithValue("@nome", objCliente.Nome);
@@ -126,9 +127,17 @@ namespace SisDec.Repository
             {
                 dr.Read();
                 objCliente.IdCliente = Convert.ToInt32(dr["clienteId"]);
-                objCliente.Nome = dr["nome"].ToString();
-                objCliente.Cpf = dr["cpf"].ToString();
+                objCliente.Nome = dr["Nome"].ToString();
+                objCliente.Cpf = dr["Cpf"].ToString();
+                objCliente.Endereco = dr["endereco"].ToString();
+                objCliente.Bairro = dr["bairro"].ToString();
+                objCliente.Cep = Convert.ToDecimal(dr["cep"]);
+                objCliente.Complemento = dr["complemento"].ToString();
+                objCliente.Email = dr["email"].ToString();
                 objCliente.tipoPessoa = (TipoPessoa)Enum.Parse(typeof(TipoPessoa), dr["TipoPessoa"].ToString());
+                objCliente.Numero = Convert.ToInt32(dr["numero"]);
+                objCliente.Telefone = Convert.ToDecimal(dr["telefone"]);
+                objCliente.Cnpj = dr["cnpj"].ToString();
                 objCliente.objCidade = new RepositoryCidade().CidadePorId((int)dr["cidadeId"]);
             }
             else

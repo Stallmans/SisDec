@@ -390,7 +390,7 @@
     <Content Include="Views\Peca\Listar.cshtml" />
     <Content Include="Views\Requisicao\Listar.cshtml" />
     <Content Include="Views\Cliente\Inserir.cshtml" />
-    <Content Include="Views\Cliente\ClienteJuridica.cshtml" />
+    <Content Include="Views\Cliente\EdiatrClienteJuridica.cshtml" />
     <Content Include="Views\Cliente\Listar.cshtml" />
     <Content Include="Views\Requisicao\Inserir.cshtml" />
     <Content Include="Views\Requisicao\Editar.cshtml" />
@@ -405,6 +405,7 @@
     <Content Include="Views\Usuarios\Login.cshtml" />
     <Content Include="Views\Requisicao\Nova.cshtml" />
     <Content Include="Views\Cliente\DetalhesClienteFisica.cshtml" />
+    <Content Include="Views\Cliente\DetalhesClienteJuridica.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

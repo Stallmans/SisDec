@@ -17,7 +17,12 @@ namespace SisDec.Controllers
             return View(new Cliente().BuscarTodos());
         }
 
-        public  ActionResult DetalhesClienteFisica(int idCliente)
+        public ActionResult DetalhesClienteFisica(int idCliente)
+        {
+            return View(new Cliente().BuscarPorId(idCliente));
+        }
+
+        public ActionResult DetalhesClienteJuridica(int idCliente)
         {
             return View(new Cliente().BuscarPorId(idCliente));
         }
@@ -39,11 +44,11 @@ namespace SisDec.Controllers
 
         }
 
-        public ActionResult EditarClienteFisica(Cliente objCliente, int CidadeId)
+        public ActionResult EditarClienteFisica(Cliente objCliente, int IdCliente)
         {
-            objCliente.objCidade = new Cidade().BuscarPorId(CidadeId);
-            objCliente.Gravar();
-            return View();
+            ViewBag.CidadeId = new SelectList(new Cidade().BuscarPorNome(""), "cidadeId", "nome");
+            objCliente = new Cliente().BuscarPorId(IdCliente);
+            return View(objCliente);
         }
 
         [HttpPost]

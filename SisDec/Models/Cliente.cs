@@ -102,7 +102,7 @@ namespace SisDec.Models
             }
             else
             {
-                //repo.Update(this);
+                repo.Update(this);
             }
         }
 
