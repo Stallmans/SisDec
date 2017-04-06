@@ -33,20 +33,22 @@ namespace SisDec.Models
 
         public string Bairro { get; set; }
 
-        [Required(ErrorMessage = "O CEP deve ser informado.!")]
+        
         [RegularExpression(@"^\d{8}$|^\d{5}-\d{3}$", ErrorMessage = "O código postal deverá estar no formato 00000000 ou 00000-000")]
+        [Required(ErrorMessage = "O CEP deve ser informado.!")]
         public decimal Cep { get; set; }
 
         public string Complemento { get; set; }
 
-        [Required]
+        
         [Display(Name = "Data de Nascimento")]
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
+        [Required]
         public DateTime DataNascimento { get; set; }
 
         [RegularExpression(@"^ ([\w\.\-] +)@([\w\-] +)((\.(\w){2, 3})+)$", ErrorMessage = "O e-mail não é válido.")]
         [Required]
-        [EmailAddress]
         public string Email { get; set; }
 
         public string Endereco { get; set; }
@@ -55,7 +57,6 @@ namespace SisDec.Models
 
 
         [Required]
-        [Phone]
         public decimal Telefone { get; set; }
 
         //Pessoa Juridica
@@ -82,10 +83,14 @@ namespace SisDec.Models
             objCidade = new Cidade();
         }
 
-
-        public Cliente BuscarPorId(int idCliente)
+        public Cliente BuscarPorIdJ(int idCliente)
         {
-            return new RepositoryCliente().ClientePorId(idCliente);
+            return new RepositoryCliente().ClientePorIdJurica(idCliente);
+        }
+
+        public Cliente BuscarPorIdF(int idCliente)
+        {
+            return new RepositoryCliente().ClientePorIdFisica(idCliente);
         }
 
         public IList<Cliente> BuscarTodos()

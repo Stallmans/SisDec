@@ -138,7 +138,6 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#DataNascimento").mask("99/99/9999");
             $("#Rg").mask("9999999");
             $("#Cpf").mask("999.999.999-99");
             $("#Telefone").mask("(99) 9 9999-9999");
@@ -146,12 +145,12 @@
             $('#TabelaListar').DataTable({
                 "oLanguage": {
                     "sProcessing": "Aguarde enquanto os dados são carregados ...",
-                    "sLengthMenu": "Mostrar registros por pagina: _MENU_ ",
+                    "sLengthMenu": "Registros por pagina: _MENU_ ",
                     "sZeroRecords": "Nenhum registro correspondente ao criterio encontrado",
                     "sInfoEmpty": "Exibindo 0 a 0 de 0 registros",
                     "sInfo": "Exibindo de _START_ a _END_ de _TOTAL_ registros",
                     "sInfoFiltered": "",
-                    "sSearch": "Procurar",
+                    "sSearch": "Procurar : ",
                     "oPaginate": {
                         "sFirst": "Primeiro",
                         "sPrevious": "Anterior",

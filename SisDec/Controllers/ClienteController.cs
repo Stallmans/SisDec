@@ -19,12 +19,12 @@ namespace SisDec.Controllers
 
         public ActionResult DetalhesClienteFisica(int idCliente)
         {
-            return View(new Cliente().BuscarPorId(idCliente));
+            return View(new Cliente().BuscarPorIdF(idCliente));
         }
 
         public ActionResult DetalhesClienteJuridica(int idCliente)
         {
-            return View(new Cliente().BuscarPorId(idCliente));
+            return View(new Cliente().BuscarPorIdJ(idCliente));
         }
 
         public ActionResult Inserir()
@@ -36,23 +36,37 @@ namespace SisDec.Controllers
         [HttpPost]
         public ActionResult Inserir(Cliente objCliente, TipoPessoa tipoPessoa, int CidadeId)
         {
-            
+           
             objCliente.tipoPessoa = tipoPessoa;
             objCliente.objCidade = new Cidade().BuscarPorId(CidadeId);
             objCliente.Gravar();
-            return RedirectToAction("Index");
+            return RedirectToAction("Listar");
 
         }
 
         public ActionResult EditarClienteFisica(Cliente objCliente, int IdCliente)
         {
             ViewBag.CidadeId = new SelectList(new Cidade().BuscarPorNome(""), "cidadeId", "nome");
-            objCliente = new Cliente().BuscarPorId(IdCliente);
+            objCliente = new Cliente().BuscarPorIdF(IdCliente);
             return View(objCliente);
         }
 
         [HttpPost]
         public ActionResult EditarClienteFisica(Cliente objCliente)
+        {
+            objCliente.Gravar();
+            return RedirectToAction("Listar");
+        }
+
+        public ActionResult EditarClienteJuridica(Cliente objCliente, int IdCliente)
+        {
+            ViewBag.CidadeId = new SelectList(new Cidade().BuscarPorNome(""), "cidadeId", "nome");
+            objCliente = new Cliente().BuscarPorIdJ(IdCliente);
+            return View(objCliente);
+        }
+
+        [HttpPost]
+        public ActionResult EditarClienteJuridica(Cliente objCliente)
         {
             objCliente.Gravar();
             return RedirectToAction("Listar");
