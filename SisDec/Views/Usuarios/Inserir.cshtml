@@ -16,7 +16,7 @@
         <div class="main-inner">
             <div class="container">
                 <div class="row">
-                    <div class="span12">
+                    <div class="span6">
                         <div class="widget widget-nopad">
                             <div class="widget-header">
                                 <i class="icon-list-alt"></i>
@@ -56,13 +56,14 @@
                                             <div class="control-group">
                                                 @Html.LabelFor(model => model.Senha, new { @class = "control-label" })
                                                 <div class="controls">
-                                                    @Html.TextBoxFor(model => model.Senha, new { @class = "form-control" })
+                                                    @Html.PasswordFor(model => model.Senha, new { @class = "form-control" })
                                                 </div>
                                             </div>
 
                                             <div class="form-actions">
                                                 <button type="submit" class="btn btn-primary">Salvar</button>
-                                                <button class="btn">Cancelar</button>
+
+                                                <a class="btn btn-danger" href="@Url.Action("Listar", "Usuarios")" onclick="return confirm('Deseja realmente sair?'); ">Cancelar</a>
                                             </div>
                                         </div>
                                     </div>

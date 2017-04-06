@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using SisDec.Repository;
 
 namespace SisDec.Models
 {
@@ -24,6 +25,31 @@ namespace SisDec.Models
 
         [Display(Name ="Responsável")]
         public Reponsavel enumReponsavel { get; set; }
+
+
+        public Usuarios BuscarPorId(int idUsuario)
+        {
+            return new RepositoryUsuario().BuscarPorId(idUsuario);
+        }
+
+        public IList<Usuarios> BuscarTodos()
+        {
+            return new RepositoryUsuario().BuscarTodos();
+        }
+
+        public void Gravar()
+        {
+            RepositoryUsuario repo = new RepositoryUsuario();
+            if (IdUsuario == 0)
+            {
+                repo.Inserir(this);
+            }
+            else
+            {
+                repo.Update(this);
+            }
+        }
+
 
     }//end Usuarios
 

@@ -30,8 +30,9 @@ namespace SisDec.Repository
         {
             SqlCommand comando = new SqlCommand();
             comando.CommandType = CommandType.Text;
-            comando.CommandText = "INSERT INTO Usuarios (nome,login,senha,email,responsavel) values(@nome,@login,@senha,@email,@responsavel)";
+            comando.CommandText = "UPDATE Usuarios set nome=@nome,login=@login,senha=@senha where UsuariosId=@UsuariosId";
 
+            comando.Parameters.AddWithValue("@UsuariosId", objUsuario.IdUsuario);
             comando.Parameters.AddWithValue("@nome", objUsuario.Nome);
             comando.Parameters.AddWithValue("@login", objUsuario.Login);
             comando.Parameters.AddWithValue("@senha", objUsuario.Senha);
@@ -56,9 +57,9 @@ namespace SisDec.Repository
                 while (dr.Read())
                 {
                     Usuarios objUsuarios = new Usuarios();
-                    objUsuarios.IdUsuario = Convert.ToInt32(dr["IdUsuario"]);
+                    objUsuarios.IdUsuario = Convert.ToInt32(dr["UsuariosId"]);
                     objUsuarios.Nome = dr["Nome"].ToString();
-                    objUsuarios.Email = dr["Cpf"].ToString();
+                    objUsuarios.Email = dr["Email"].ToString();
                     objUsuarios.enumReponsavel = (Reponsavel)Enum.Parse(typeof(Reponsavel),dr ["responsavel"].ToString());
   
                     ListaUsuarios.Add(objUsuarios);
@@ -69,6 +70,35 @@ namespace SisDec.Repository
                 ListaUsuarios = null;
             }
             return ListaUsuarios;
+        }
+
+        public Usuarios BuscarPorId(int id)
+        {
+            Usuarios objUsuario = new Usuarios();
+
+            SqlCommand comando = new SqlCommand();
+            comando.CommandType = CommandType.Text;
+            comando.CommandText = "SELECT * FROM Usuarios where UsuariosId=@UsuariosId";
+
+            comando.Parameters.AddWithValue("UsuariosId", id);
+
+            SqlDataReader dr = Conexao.Selecionar(comando);
+
+            if (dr.HasRows)
+            {
+                dr.Read();
+                Usuarios objUsuarios = new Usuarios();
+                objUsuarios.IdUsuario = Convert.ToInt32(dr["UsuariosId"]);
+                objUsuarios.Nome = dr["Nome"].ToString();
+                objUsuarios.Email = dr["Email"].ToString();
+                objUsuario.Senha = Convert.ToInt32(dr["senha"]);
+                objUsuarios.enumReponsavel = (Reponsavel)Enum.Parse(typeof(Reponsavel), dr["responsavel"].ToString());
+            }
+            else
+            {
+                objUsuario = null;
+            }
+            return objUsuario;
         }
     }
 }

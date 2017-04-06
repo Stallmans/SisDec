@@ -6,44 +6,84 @@
 }
 
 
+<ol class="breadcrumb">
+    <li class="active">
+        <b>
+            <i class="icon-home"></i>  <a href="@Url.Content("~/Home/Index")">Inicio</a> /
+            <i class="icon-group"></i> <a href="@Url.Content("~/Usuarios/Listar")">Listar Usuarios</a>
+        </b>
+    </li>
+</ol>
 <p>
     @Html.ActionLink("Novo Usuário", "Inserir", null, new { @class = "btn btnlg btn-success" })
 </p>
-<table class="table" id="TabelaListar">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.enumReponsavel)
-            </th>
-            <th>
-                Ação
-            </th>
-        </tr>
-    </thead>
 
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nome)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.enumReponsavel)
-                </td>
-                <td>
-                    <a class="btn btn-default btn-sm" href="@Url.Action("Editar","Usuarios",new { item.IdUsuario})">Editar   <i class="icon-pencil"></i></a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+
+<div class="main">
+    <div class="main-inner">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <div class="widget widget-nopad">
+                        <div class="widget-header">
+                            <i class="icon-list-alt"></i>
+                            <h3>Usuários</h3>
+                        </div>
+                        <!-- /widget-header -->
+                        <div class="widget-content">
+                            <div class="widget big-stats-container">
+                                <div class="widget-content">
+                                    <div class="form-horizontal">
+                                        <p>
+
+                                        </p>
+                                        <table class="table" id="TabelaListar">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.Nome)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.Email)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.enumReponsavel)
+                                                    </th>
+                                                    <th>
+                                                        Ação
+                                                    </th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                @foreach (var item in Model)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Nome)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Email)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.enumReponsavel)
+                                                        </td>
+                                                        <td>
+                                                            <a class="btn btn-default btn-sm" href="@Url.Action("Editar","Usuarios",new { item.IdUsuario})">Editar   <i class="icon-pencil"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /widget-content -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

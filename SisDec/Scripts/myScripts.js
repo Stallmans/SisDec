@@ -67,28 +67,28 @@ $(document).ready(function () {
             $('#productCategory').siblings('span.error').css('visibility', 'hidden');
         }
 
-        if ($('#product').val() == "0") {
+        if ($('#Referencia').val() == "0") {
             isAllValid = false;
-            $('#product').siblings('span.error').css('visibility', 'visible');
+            $('#Referencia').siblings('span.error').css('visibility', 'visible');
         }
         else {
-            $('#product').siblings('span.error').css('visibility', 'hidden');
+            $('#Referencia').siblings('span.error').css('visibility', 'hidden');
         }
 
-        if (!($('#quantity').val().trim() != '' && (parseInt($('#quantity').val()) || 0))) {
+        if (!($('#Quantidade').val().trim() != '' && (parseInt($('#Quantidade').val()) || 0))) {
             isAllValid = false;
-            $('#quantity').siblings('span.error').css('visibility', 'visible');
+            $('#Quantidade').siblings('span.error').css('visibility', 'visible');
         }
         else {
-            $('#quantity').siblings('span.error').css('visibility', 'hidden');
+            $('#Quantidade').siblings('span.error').css('visibility', 'hidden');
         }
 
-        if (!($('#rate').val().trim() != '' && !isNaN($('#rate').val().trim()))) {
+        if (!($('#Valor').val().trim() != '' && !isNaN($('#Valor').val().trim()))) {
             isAllValid = false;
-            $('#rate').siblings('span.error').css('visibility', 'visible');
+            $('#Valor').siblings('span.error').css('visibility', 'visible');
         }
         else {
-            $('#rate').siblings('span.error').css('visibility', 'hidden');
+            $('#Valor').siblings('span.error').css('visibility', 'hidden');
         }
 
         if (isAllValid) {

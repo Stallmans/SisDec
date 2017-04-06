@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using SisDec.Repository;
 using SisDec.Models;
 
 namespace SisDec.Controllers
@@ -11,42 +10,38 @@ namespace SisDec.Controllers
     public class UsuariosController : Controller
     {
 
-        RepositoryUsuario repositoryUsuario = new RepositoryUsuario();
 
         public ActionResult Listar()
         {
-            return View(repositoryUsuario.BuscarTodos());
+            return View(new Usuarios().BuscarTodos());
         }
 
-        
-        // GET: Usuarios/Create
+
         public ActionResult Inserir()
         {
             return View();
         }
 
-        // POST: Usuarios/Create
         [HttpPost]
-        public ActionResult Create(Usuarios objUsuario)
+        public ActionResult Inserir(Usuarios objUsuario)
         {
-            repositoryUsuario.Inserir(objUsuario);
+            objUsuario.Gravar();
             return RedirectToAction("Listar");
-           
+
         }
 
-        // GET: Usuarios/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Editar(Usuarios objUsuario, int idUsuario)
         {
-            return View();
+            objUsuario = new Usuarios().BuscarPorId(idUsuario);
+            return View(objUsuario);
         }
 
-        // POST: Usuarios/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Editar(Usuarios objUsuario)
         {
-           
-                return RedirectToAction("Index");
-            
+            objUsuario.Gravar();
+            return RedirectToAction("Listar");
+
         }
 
         public ActionResult Login()
