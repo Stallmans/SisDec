@@ -78,8 +78,8 @@
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-list-alt"></i><span>Requisição</span> <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="@Url.Content("~/Requisição/Listar")">Listar Requisição</a></li>
-                            <li><a href="@Url.Content("~/Requisição/Inserir")">Nova Requisição</a></li>
+                            <li><a href="@Url.Content("~/Requisicao/Listar")">Listar Requisição</a></li>
+                            <li><a href="@Url.Content("~/Requisicao/Inserir")">Nova Requisição</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -139,10 +139,6 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#Rg").mask("9999999");
-            $("#Cpf").mask("999.999.999-99");
-            $("#Telefone").mask("(99) 9 9999-9999");
-            $("#Cep").mask("99999-999");
             $('#TabelaListar').DataTable({
                 "oLanguage": {
                     "sProcessing": "Aguarde enquanto os dados são carregados ...",

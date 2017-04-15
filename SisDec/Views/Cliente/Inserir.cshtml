@@ -11,7 +11,6 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-
     <script>
         function pessoa(tipoPessoa) {
 
@@ -48,11 +47,12 @@
                                     <div class="widget-content">
                                         <div class="form-horizontal">
                                             <div id="radioset">
-                                                <input type="radio" name="tipoPessoa" value="pessoaFisica" onclick="pessoa(this.value);">   Fisica
+                                                <input type="radio" name="tipoPessoa" value="pessoaFisica" checked onclick="pessoa(this.value);">   Fisica
                                                 <input type="radio" name="tipoPessoa" value="pessoaJuridica" onclick="pessoa(this.value);">   Juridica
                                             </div>
 
-                                            <div id="pessoaFisica" style="display:none;">
+                   
+                                            <div id="pessoaFisica" style="display:inline;">
                                                 <div class="form-horizontal">
                                                     <hr />
 
@@ -135,15 +135,13 @@
                                                             @Html.TextBoxFor(model => model.Telefone, new { @class = "form-control" })
                                                         </div>
                                                     </div>
-
                                                     <div class="form-actions">
                                                         <button type="submit" class="btn btn-primary">Salvar</button>
 
-                                                        <a class="btn btn-danger" href="@Url.Action("Cliente", "Listar")" onclick="return confirm('Deseja realmente sair?'); ">Cancelar</a>
+                                                        <a class="btn btn-danger" href="@Url.Action("Listar", "Cliente")" onclick="return confirm('Deseja realmente sair?'); ">Cancelar</a>
                                                     </div>
                                                 </div>
                                             </div>
-
 
 
                                             <div id="pessoaJuridica" style="display:none;">
@@ -189,7 +187,7 @@
                                                     <div class="control-group">
                                                         @Html.LabelFor(model => model.Cep, new { @class = "control-label col-md-2" })
                                                         <div class="controls">
-                                                            @Html.TextBoxFor(model => model.Cep, new { @class = "form-control" })
+                                                            @Html.TextBoxFor(model => model.Cep, new { id="Cep", @class = "form-control" })
                                                         </div>
                                                     </div>
                                                     <div class="control-group">
@@ -207,7 +205,7 @@
                                                     <div class="control-group">
                                                         @Html.LabelFor(model => model.Telefone, new { @class = "control-label col-md-2" })
                                                         <div class="controls">
-                                                            @Html.TextBoxFor(model => model.Telefone, new { @class = "form-control" })
+                                                            @Html.TextBoxFor(model => model.Telefone, new { id ="fixo", @class = "form-control" })
                                                         </div>
                                                     </div>
                                                     <div class="control-group">
@@ -218,10 +216,12 @@
                                                     </div>
                                                     <div class="form-actions">
                                                         <button type="submit" class="btn btn-primary">Salvar</button>
-                                                        <button class="btn">Cancelar</button>
+                                                        
+                                                        <a class="btn btn-danger" href="@Url.Action("Listar", "Cliente")" onclick="return confirm('Deseja realmente sair?'); ">Cancelar</a>
                                                     </div>
                                                 </div>
                                             </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -235,3 +235,12 @@
 
     </div> <!-- /span12 -->
 }
+
+<script>
+    $("#Rg").mask("9999999");
+    $("#Cpf").mask("999.999.999-99");
+    $("#Telefone").mask("(99) 9 9999-9999");
+    $("#Cep").mask("99999-999");
+    $("#Cnpj").mask("99.999.999/9999-99");
+    $("#fixo").mask("(99) 9999-9999");
+</script>

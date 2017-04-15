@@ -21,9 +21,12 @@ namespace SisDec.Models
         [Display(Name = "Data do Pedido")]
         public DateTime DataPedido { get; set; }
 
-        public DateTime DataRequisicao { get; set; }
+        public DateTime DataRequisicao { get; set; } = DateTime.Today;
+
+
+
+
         public string Finalidade { get; set; }
-        //public int Estado { get; set; }
 
         public List<PecaRequisicao> ListaPecaRequisicao { get; set; }
         public Cliente ObjCliente { get; set; }

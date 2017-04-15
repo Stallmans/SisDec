@@ -36,12 +36,15 @@ namespace SisDec.Controllers
         [HttpPost]
         public ActionResult Inserir(Cliente objCliente, TipoPessoa tipoPessoa, int CidadeId)
         {
-           
-            objCliente.tipoPessoa = tipoPessoa;
-            objCliente.objCidade = new Cidade().BuscarPorId(CidadeId);
-            objCliente.Gravar();
-            return RedirectToAction("Listar");
+            if (ModelState.IsValid)
+            {
 
+                objCliente.tipoPessoa = tipoPessoa;
+                objCliente.objCidade = new Cidade().BuscarPorId(CidadeId);
+                objCliente.Gravar();
+            }
+                return RedirectToAction("Listar");
+            
         }
 
         public ActionResult EditarClienteFisica(Cliente objCliente, int IdCliente)
@@ -54,7 +57,10 @@ namespace SisDec.Controllers
         [HttpPost]
         public ActionResult EditarClienteFisica(Cliente objCliente)
         {
-            objCliente.Gravar();
+            if (ModelState.IsValid)
+            {
+                objCliente.Gravar();
+            }
             return RedirectToAction("Listar");
         }
 
@@ -68,7 +74,10 @@ namespace SisDec.Controllers
         [HttpPost]
         public ActionResult EditarClienteJuridica(Cliente objCliente)
         {
-            objCliente.Gravar();
+            if (ModelState.IsValid)
+            {
+                objCliente.Gravar();
+            }
             return RedirectToAction("Listar");
         }
     }

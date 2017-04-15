@@ -34,9 +34,8 @@ namespace SisDec.Models
         public string Bairro { get; set; }
 
         
-        [RegularExpression(@"^\d{8}$|^\d{5}-\d{3}$", ErrorMessage = "O código postal deverá estar no formato 00000000 ou 00000-000")]
         [Required(ErrorMessage = "O CEP deve ser informado.!")]
-        public decimal Cep { get; set; }
+        public string Cep { get; set; }
 
         public string Complemento { get; set; }
 
@@ -57,13 +56,13 @@ namespace SisDec.Models
 
 
         [Required]
-        public decimal Telefone { get; set; }
+        public string Telefone { get; set; }
 
         //Pessoa Juridica
         [DisplayName("Inscricao Estadual")]
-        public decimal InscricaoEstadual { get; set; }
+        public string InscricaoEstadual { get; set; }
         [DisplayName("Inscricao Municipal")]
-        public decimal InscricaoMunicipal { get; set; }
+        public string InscricaoMunicipal { get; set; }
 
         [Required]
         public string Cnpj { get; set; }

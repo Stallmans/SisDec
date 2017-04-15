@@ -165,12 +165,12 @@ namespace SisDec.Repository
                 objCliente.enumSexo = (Sexo)Enum.Parse(typeof(Sexo), dr["sexo"].ToString());
                 objCliente.Rg = Convert.ToInt32(dr["Rg"]);
                 objCliente.Bairro = dr["bairro"].ToString();
-                objCliente.Cep = Convert.ToDecimal(dr["cep"]);
+                objCliente.Cep = dr["cep"].ToString();
                 objCliente.Complemento = dr["complemento"].ToString();
                 objCliente.Email = dr["email"].ToString();
                 objCliente.tipoPessoa = (TipoPessoa)Enum.Parse(typeof(TipoPessoa), dr["TipoPessoa"].ToString());
                 objCliente.Numero = Convert.ToInt32(dr["numero"]);
-                objCliente.Telefone = Convert.ToDecimal(dr["telefone"]);
+                objCliente.Telefone = dr["telefone"].ToString();
                 objCliente.objCidade = new RepositoryCidade().CidadePorId((int)dr["cidadeId"]);
 
             }
@@ -202,15 +202,15 @@ namespace SisDec.Repository
                 objCliente.Cpf = dr["Cpf"].ToString();
                 objCliente.Endereco = dr["endereco"].ToString();
                 objCliente.Bairro = dr["bairro"].ToString();
-                objCliente.Cep = Convert.ToDecimal(dr["cep"]);
+                objCliente.Cep = dr["cep"].ToString();
                 objCliente.Email = dr["email"].ToString();
                 objCliente.tipoPessoa = (TipoPessoa)Enum.Parse(typeof(TipoPessoa), dr["TipoPessoa"].ToString());
                 objCliente.Numero = Convert.ToInt32(dr["numero"]);
-                objCliente.Telefone = Convert.ToDecimal(dr["telefone"]);
+                objCliente.Telefone = dr["telefone"].ToString();
                 objCliente.objCidade = new RepositoryCidade().CidadePorId((int)dr["cidadeId"]);
                 objCliente.Cnpj = dr["cnpj"].ToString();
-                objCliente.InscricaoEstadual = Convert.ToDecimal(dr["Inscricaoestadual"]);
-                objCliente.InscricaoEstadual = Convert.ToDecimal(dr["Inscricaomunicipal"]);
+                objCliente.InscricaoEstadual = dr["Inscricaoestadual"].ToString();
+                objCliente.InscricaoMunicipal = dr["Inscricaomunicipal"].ToString();
 
             }
             else

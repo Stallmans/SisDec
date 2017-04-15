@@ -28,8 +28,10 @@ namespace SisDec.Controllers
         [HttpPost]
         public ActionResult Inserir(Peca objPeca)
         {
-
-            objPeca.Gravar();
+            if (ModelState.IsValid)
+            {
+                objPeca.Gravar();
+            }
             return RedirectToAction("Listar");
 
         }
@@ -47,7 +49,10 @@ namespace SisDec.Controllers
         [HttpPost]
         public ActionResult Editar(Peca objPeca)
         {
-            objPeca.Gravar();
+            if (ModelState.IsValid)
+            {
+                objPeca.Gravar();
+            }
             return RedirectToAction("Listar");
         }
     }
