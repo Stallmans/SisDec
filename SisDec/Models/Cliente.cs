@@ -40,12 +40,6 @@ namespace SisDec.Models
         public string Complemento { get; set; }
 
         
-        [Display(Name = "Data de Nascimento")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
-        [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
-        [Required]
-        public DateTime DataNascimento { get; set; }
-
         [RegularExpression(@"^ ([\w\.\-] +)@([\w\-] +)((\.(\w){2, 3})+)$", ErrorMessage = "O e-mail não é válido.")]
         [Required]
         public string Email { get; set; }
@@ -59,8 +53,6 @@ namespace SisDec.Models
         public string Telefone { get; set; }
 
         //Pessoa Juridica
-        [DisplayName("Inscricao Estadual")]
-        public string InscricaoEstadual { get; set; }
         [DisplayName("Inscricao Municipal")]
         public string InscricaoMunicipal { get; set; }
 

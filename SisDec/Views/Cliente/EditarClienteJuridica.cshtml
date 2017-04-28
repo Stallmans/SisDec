@@ -43,12 +43,6 @@
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    @Html.LabelFor(model => model.InscricaoEstadual, new { @class = "control-label col-md-2" })
-                                                    <div class="controls">
-                                                        @Html.TextBoxFor(model => model.InscricaoEstadual, new { @class = "form-control" })
-                                                    </div>
-                                                </div>
-                                                <div class="control-group">
                                                     @Html.LabelFor(model => model.InscricaoMunicipal, new { @class = "control-label col-md-2" })
                                                     <div class="controls">
                                                         @Html.TextBoxFor(model => model.InscricaoMunicipal, new { @class = "form-control" })
@@ -63,7 +57,7 @@
                                                 <div class="control-group">
                                                     @Html.LabelFor(model => model.objCidade, new { @class = "control-label col-md-2" })
                                                     <div class="controls">
-                                                       @Html.DropDownList("objCidade.CidadeId", ViewBag.CidadeId as SelectList, new { @class = "form-control" })
+                                                        @Html.DropDownList("objCidade.CidadeId", ViewBag.CidadeId as SelectList, new { @class = "form-control" })
                                                     </div>
                                                 </div>
                                                 <div class="control-group">

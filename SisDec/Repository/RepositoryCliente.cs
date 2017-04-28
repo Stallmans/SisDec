@@ -17,12 +17,11 @@ namespace SisDec.Repository
             {
                 SqlCommand comando = new SqlCommand();
                 comando.CommandType = CommandType.Text;
-                comando.CommandText = "INSERT INTO Cliente (nome, cpf, endereco, dataNascimento, sexo, rg, bairro,cep,complemento,email,tipoPessoa, numero, telefone,cidadeId) Values(@nome, @cpf, @endereco, @dataNascimento, @sexo, @rg, @bairro, @cep, @complemento, @email, @tipoPessoa, @numero, @telefone, @cidadeId)";
+                comando.CommandText = "INSERT INTO Cliente (nome, cpf, endereco, sexo, rg, bairro,cep,complemento,email,tipoPessoa, numero, telefone,cidadeId) Values(@nome, @cpf, @endereco, @sexo, @rg, @bairro, @cep, @complemento, @email, @tipoPessoa, @numero, @telefone, @cidadeId)";
 
                 comando.Parameters.AddWithValue("@nome", objCliente.Nome);
                 comando.Parameters.AddWithValue("@cpf", objCliente.Cpf);
                 comando.Parameters.AddWithValue("@endereco", objCliente.Endereco);
-                comando.Parameters.AddWithValue("@dataNascimento", objCliente.DataNascimento);
                 comando.Parameters.AddWithValue("@sexo", objCliente.enumSexo);
                 comando.Parameters.AddWithValue("@rg", objCliente.Rg);
                 comando.Parameters.AddWithValue("@bairro", objCliente.Bairro);
@@ -40,7 +39,7 @@ namespace SisDec.Repository
             {
                 SqlCommand comando = new SqlCommand();
                 comando.CommandType = CommandType.Text;
-                comando.CommandText = "INSERT INTO Cliente (nome,endereco,bairro,cep,email,tipoPessoa,numero, telefone,cidadeId, Cnpj,Inscricaoestadual, Inscricaomunicipal) Values(@nome,@endereco,@bairro,@cep,@email,@tipoPessoa,@numero,@telefone,@cidadeId, @Cnpj,@Inscricaoestadual,@Inscricaomunicipal)";
+                comando.CommandText = "INSERT INTO Cliente (nome,endereco,bairro,cep,email,tipoPessoa,numero, telefone,cidadeId, Cnpj,Inscricaomunicipal) Values(@nome,@endereco,@bairro,@cep,@email,@tipoPessoa,@numero,@telefone,@cidadeId, @Cnpj,@Inscricaomunicipal)";
 
                 comando.Parameters.AddWithValue("@nome", objCliente.Nome);
                 comando.Parameters.AddWithValue("@endereco", objCliente.Endereco);
@@ -52,7 +51,6 @@ namespace SisDec.Repository
                 comando.Parameters.AddWithValue("@telefone", objCliente.Telefone);
                 comando.Parameters.AddWithValue("@cidadeId", objCliente.objCidade.CidadeId);
                 comando.Parameters.AddWithValue("@Cnpj", objCliente.Cnpj);
-                comando.Parameters.AddWithValue("@Inscricaoestadual", objCliente.InscricaoEstadual);
                 comando.Parameters.AddWithValue("@Inscricaomunicipal", objCliente.InscricaoMunicipal);
                 Conexao.Crud(comando);
             }
@@ -65,13 +63,12 @@ namespace SisDec.Repository
             {
                 SqlCommand comando = new SqlCommand();
                 comando.CommandType = CommandType.Text;
-                comando.CommandText = "UPDATE Cliente set nome=@nome, cpf=@cpf, endereco=@endereco, dataNascimento=@dataNascimento, sexo=@sexo, rg=@rg, bairro=@bairro, cep=@cep, complemento=@complemento, email=@email, tipoPessoa=@tipoPessoa, numero=@numero, telefone=@telefone, cidadeId=@cidadeId where clienteId=@clienteId";
+                comando.CommandText = "UPDATE Cliente set nome=@nome, cpf=@cpf, endereco=@endereco, sexo=@sexo, rg=@rg, bairro=@bairro, cep=@cep, complemento=@complemento, email=@email, tipoPessoa=@tipoPessoa, numero=@numero, telefone=@telefone, cidadeId=@cidadeId where clienteId=@clienteId";
 
                 comando.Parameters.AddWithValue("@clienteId", objCliente.IdCliente);
                 comando.Parameters.AddWithValue("@nome", objCliente.Nome);
                 comando.Parameters.AddWithValue("@cpf", objCliente.Cpf);
                 comando.Parameters.AddWithValue("@endereco", objCliente.Endereco);
-                comando.Parameters.AddWithValue("@dataNascimento", objCliente.DataNascimento);
                 comando.Parameters.AddWithValue("@sexo", objCliente.enumSexo);
                 comando.Parameters.AddWithValue("@rg", objCliente.Rg);
                 comando.Parameters.AddWithValue("@bairro", objCliente.Bairro);
@@ -89,7 +86,7 @@ namespace SisDec.Repository
             {
                 SqlCommand comando = new SqlCommand();
                 comando.CommandType = CommandType.Text;
-                comando.CommandText = "UPDATE Cliente set nome=@nome, cpf=@cpf, endereco=@endereco, dataNascimento=@dataNascimento, sexo=@sexo, rg=@rg, bairro=@bairro, cep=@cep, complemento=@complemento, email=@email, tipoPessoa=@tipoPessoa, numero=@numero, telefone=@telefone, cidadeId=@cidadeId, cnpj=@Cnpj, Inscricaoestadual=@Inscricaoestadual, Inscreicaomunicipal=@Inscricaomunicipal where clienteId=@clienteId";
+                comando.CommandText = "UPDATE Cliente set nome=@nome, cpf=@cpf, endereco=@endereco, dataNascimento=@dataNascimento, sexo=@sexo, rg=@rg, bairro=@bairro, cep=@cep, complemento=@complemento, email=@email, tipoPessoa=@tipoPessoa, numero=@numero, telefone=@telefone, cidadeId=@cidadeId, cnpj=@Cnpj, Inscreicaomunicipal=@Inscricaomunicipal where clienteId=@clienteId";
 
                 comando.Parameters.AddWithValue("@clienteId", objCliente.IdCliente);
                 comando.Parameters.AddWithValue("@nome", objCliente.Nome);
@@ -102,7 +99,6 @@ namespace SisDec.Repository
                 comando.Parameters.AddWithValue("@telefone", objCliente.Telefone);
                 comando.Parameters.AddWithValue("@cidadeId", objCliente.objCidade.CidadeId);
                 comando.Parameters.AddWithValue("@Cnpj", objCliente.Cnpj);
-                comando.Parameters.AddWithValue("@Inscricaoestadual", objCliente.InscricaoEstadual);
                 comando.Parameters.AddWithValue("@Inscricaomunicipal", objCliente.InscricaoMunicipal);
                 Conexao.Crud(comando);
             }
@@ -161,7 +157,6 @@ namespace SisDec.Repository
                 objCliente.Nome = dr["Nome"].ToString();
                 objCliente.Cpf = dr["Cpf"].ToString();
                 objCliente.Endereco = dr["endereco"].ToString();
-                objCliente.DataNascimento = Convert.ToDateTime(dr["dataNascimento"]);
                 objCliente.enumSexo = (Sexo)Enum.Parse(typeof(Sexo), dr["sexo"].ToString());
                 objCliente.Rg = Convert.ToInt32(dr["Rg"]);
                 objCliente.Bairro = dr["bairro"].ToString();
@@ -209,7 +204,6 @@ namespace SisDec.Repository
                 objCliente.Telefone = dr["telefone"].ToString();
                 objCliente.objCidade = new RepositoryCidade().CidadePorId((int)dr["cidadeId"]);
                 objCliente.Cnpj = dr["cnpj"].ToString();
-                objCliente.InscricaoEstadual = dr["Inscricaoestadual"].ToString();
                 objCliente.InscricaoMunicipal = dr["Inscricaomunicipal"].ToString();
 
             }

@@ -18,19 +18,25 @@ namespace SisDec.Models
 
         [Display(Name = "Numero da Requisição")]
         public int NumeroRequisicao { get; set; }
+
         [Display(Name = "Data do Pedido")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
+        [Required]
         public DateTime DataPedido { get; set; }
 
-        public DateTime DataRequisicao { get; set; } = DateTime.Today;
+        [Display(Name = "Data da Requisicao")]
+        public DateTime DataRequisicao { get; set; } = DateTime.Now;
 
 
 
 
         public string Finalidade { get; set; }
 
-        public List<PecaRequisicao> ListaPecaRequisicao { get; set; }
+        public IList<PecaRequisicao> ListaPecaRequisicao { get; set; }
         public Cliente ObjCliente { get; set; }
         public Peca objPeca { get; set; }
+
 
     }//end Requisicao
 

@@ -9,42 +9,25 @@ namespace SisDec.Controllers
     public class RequisicaoController : Controller
     {
         // GET: Requisicao
-        public ActionResult Index()
+        public ActionResult Listar()
         {
             return View();
         }
 
-        // GET: Requisicao/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
+        // GET: Requisicao/Inserir
         public ActionResult Inserir()
         {
             return View();
         }
 
-        // GET: Requisicao/Create
-        public ActionResult Nova()
-        {
-            return View();
-        }
 
-        // POST: Requisicao/Create
+        // POST: Requisicao/Inserir
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Inserir(FormCollection form)
         {
-            try
-            {
-                // TODO: Add insert logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return View();
         }
 
         // GET: Requisicao/Edit/5
@@ -69,26 +52,5 @@ namespace SisDec.Controllers
             }
         }
 
-        // GET: Requisicao/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Requisicao/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

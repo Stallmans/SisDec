@@ -1,242 +1,150 @@
 ﻿@model SisDec.Models.Cliente
 
-
-
 @{
     ViewBag.Title = "Novo Cliente";
 }
 
+<ol class="breadcrumb">
+    <li class="active">
+        <b>
+            Você está em:
+            <i class="icon-home"> <a href="@Url.Content("~/Home/Index")">Inicio</a></i> /
+            <i class="icon-user"> <a href="@Url.Content("~/Cliente/Inserir")">Inserir Clientes</a></i>
+        </b>
+    </li>
+</ol>
+
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    <script>
-        function pessoa(tipoPessoa) {
-
-            if (tipoPessoa == "pessoaFisica") {
-
-                document.getElementById("pessoaFisica").style.display = "inline";
-                document.getElementById("pessoaJuridica").style.display = "none";
-
-            } else if (tipoPessoa == "pessoaJuridica") {
-
-                document.getElementById("pessoaFisica").style.display = "none";
-                document.getElementById("pessoaJuridica").style.display = "inline";
-
-            }
-
-        }
-
-    </script>
+    <div id="radioset">
+        <input type="radio" name="tipoPessoa" value="pessoaFisica" checked onclick="pessoa(this.value);">   Fisica
+        <input type="radio" name="tipoPessoa" value="pessoaJuridica" onclick="pessoa(this.value);">   Juridica
 
 
-    <div class="main">
-        <div class="main-inner">
-            <div class="container">
-                <div class="row">
-                    <div class="span12">
-                        <div class="widget widget-nopad">
-                            <div class="widget-header">
-                                <i class="icon-user"></i>
-                                <h3>Escolha um tipo cliente:</h3>
-                            </div>
-                            <!-- /widget-header -->
-                            <div class="widget-content">
-                                <div class="widget big-stats-container">
-                                    <div class="widget-content">
-                                        <div class="form-horizontal">
-                                            <div id="radioset">
-                                                <input type="radio" name="tipoPessoa" value="pessoaFisica" checked onclick="pessoa(this.value);">   Fisica
-                                                <input type="radio" name="tipoPessoa" value="pessoaJuridica" onclick="pessoa(this.value);">   Juridica
-                                            </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.Nome, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(model => model.Nome, new { @class = "form-control", placeholder = "Nome", required = " " })
+            </div>
+        </div>
+        <div class="control-group" id="cpf">
+            @Html.LabelFor(model => model.Cpf, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(model => model.Cpf, new { @class = "form-control", placeholder = "CPF", required = " " })
+            </div>
+        </div>
+        <div class="control-group" id="cnpj">
+            @Html.LabelFor(model => model.Cnpj, new { @class = "control-label col-md-2" })
+            <div class="controls">
+                @Html.TextBoxFor(model => model.Cnpj, new { @class = "form-control", placeholder = "Cnpj", required = " " })
+            </div>
+        </div>
+        <div class="control-group" id="rg">
+            @Html.LabelFor(model => model.Rg, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(model => model.Rg, new { @class = "form-control", placeholder = "RG", required = " " })
+            </div>
+        </div>
+        <div class="control-group" id="inscricaoM">
+            @Html.LabelFor(model => model.InscricaoMunicipal, new { @class = "control-label col-md-2" })
+            <div class="controls">
+                @Html.TextBoxFor(model => model.InscricaoMunicipal, new { @class = "form-control", placeholder = "Inscrição Municipal", required = " " })
+            </div>
+        </div>
+        <div class="control-group" id="sexo">
+            @Html.LabelFor(model => model.enumSexo, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EnumDropDownListFor(model => model.enumSexo, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.enumSexo)
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.Endereco, new { @class = "control-label col-md-2" })
+            <div class="controls">
+                @Html.TextBoxFor(model => model.Endereco, new { @class = "form-control", placeholder = "Ex: Rua...", required = " " })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.objCidade, new { @class = "control-label col-md-2" })
+            <div class="controls">
+                @Html.DropDownList("CidadeId", null, string.Empty, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.Cep, new { @class = "control-label col-md-2" })
+            <div class="controls">
+                @Html.TextBoxFor(model => model.Cep, new { id = "Cep", @class = "form-control", placeholder = "CEP", required = " " })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.Numero, new { @class = "control-label col-md-2" })
+            <div class="controls">
+                @Html.TextBoxFor(model => model.Numero, new { @class = "form-control", placeholder = "Numero", required = " " })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.Bairro, new { @class = "control-label col-md-2" })
+            <div class="controls">
+                @Html.TextBoxFor(model => model.Bairro, new { @class = "form-control", placeholder = "Bairro", required = " " })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.Telefone, new { @class = "control-label col-md-2" })
+            <div class="controls">
+                @Html.TextBoxFor(model => model.Telefone, new { id = "fixo", @class = "form-control", placeholder = "Telefone", required = " " })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+            <div class="controls">
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "exemplo@email.com", required = " " })
+            </div>
+        </div>
+        <div class="controls">
+            <p>Todos os campos são obrigatorios*</p>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Salvar</button>
 
-                   
-                                            <div id="pessoaFisica" style="display:inline;">
-                                                <div class="form-horizontal">
-                                                    <hr />
-
-                                                    <div class="control-group">
-                                                        @Html.LabelFor(model => model.Nome, new { @class = "control-label" })
-                                                        <div class="controls">
-                                                            @Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
-                                                        </div>
-                                                    </div>
-                                                    <div class="control-group">
-                                                        @Html.LabelFor(model => model.Cpf, new { @class = "control-label" })
-                                                        <div class="controls">
-                                                            @Html.TextBoxFor(model => model.Cpf, new { @class = "form-control" })
-                                                        </div>
-                                                    </div>
-                                                    <div class="control-group">
-                                                        @Html.LabelFor(model => model.Rg, new { @class = "control-label" })
-                                                        <div class="controls">
-                                                            @Html.TextBoxFor(model => model.Rg, new { @class = "form-control" })
-                                                        </div>
-                                                    </div>
-                                                    <div class="control-group">
-                                                        @Html.LabelFor(model => model.enumSexo, new { @class = "control-label" })
-                                                        <div class="controls">
-                                                            @Html.EnumDropDownListFor(model => model.enumSexo, new { @class = "form-control" })
-                                                        </div>
-                                                    </div>
-                                                    <div class="control-group">
-                                                        @Html.LabelFor(model => model.DataNascimento, new { @class = "control-label" })
-                                                        <div class="controls">
-                                                            @Html.EditorFor(model => model.DataNascimento, new { @class = "form-control" })
-                                                        </div>
-                                                    </div>
-                                                    <div class="control-group">
-                                                        @Html.LabelFor(model => model.Endereco, new { @class = "control-label col-md-2" })
-                                                        <div class="controls">
-                                                            @Html.TextBoxFor(model => model.Endereco, new { @class = "form-control" })
-                                                        </div>
-                                                    </div>
-                                                    <div class="control-group">
-                                                        @Html.LabelFor(model => model.Complemento, new { @class = "control-label col-md-2" })
-                                                        <div class="controls">
-                                                            @Html.TextBoxFor(model => model.Complemento, new { @class = "form-control" })
-                                                        </div>
-                                                    </div>
-                                                    <div class="control-group">
-                                                        @Html.LabelFor(model => model.objCidade, new { @class = "control-label col-md-2" })
-                                                        <div class="controls">
-                                                            @Html.DropDownList("CidadeId", null, string.Empty, new { @class = "form-control" })
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="control-group">
-                                                        @Html.LabelFor(model => model.Cep, new { @class = "control-label col-md-2" })
-                                                        <div class="controls">
-                                                            @Html.TextBoxFor(model => model.Cep, new { @class = "form-control" })
-                                                        </div>
-                                                    </div>
-                                                    <div class="control-group">
-                                                        @Html.LabelFor(model => model.Numero, new { @class = "control-label col-md-2" })
-                                                        <div class="controls">
-                                                            @Html.TextBoxFor(model => model.Numero, new { @class = "form-control" })
-                                                        </div>
-                                                    </div>
-                                                    <div class="control-group">
-                                                        @Html.LabelFor(model => model.Bairro, new { @class = "control-label col-md-2" })
-                                                        <div class="controls">
-                                                            @Html.TextBoxFor(model => model.Bairro, new { @class = "form-control" })
-                                                        </div>
-                                                    </div>
-                                                    <div class="control-group">
-                                                        @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
-                                                        <div class="controls">
-                                                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
-                                                        </div>
-                                                    </div>
-                                                    <div class="control-group">
-                                                        @Html.LabelFor(model => model.Telefone, new { @class = "control-label col-md-2" })
-                                                        <div class="controls">
-                                                            @Html.TextBoxFor(model => model.Telefone, new { @class = "form-control" })
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-actions">
-                                                        <button type="submit" class="btn btn-primary">Salvar</button>
-
-                                                        <a class="btn btn-danger" href="@Url.Action("Listar", "Cliente")" onclick="return confirm('Deseja realmente sair?'); ">Cancelar</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div id="pessoaJuridica" style="display:none;">
-                                                <div class="form-horizontal">
-                                                    <hr />
-
-                                                    <div class="control-group">
-                                                        @Html.LabelFor(model => model.Nome, new { @class = "control-label" })
-                                                        <div class="controls">
-                                                            @Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
-                                                        </div>
-                                                    </div>
-                                                    <div class="control-group">
-                                                        @Html.LabelFor(model => model.Cnpj, new { @class = "control-label col-md-2" })
-                                                        <div class="controls">
-                                                            @Html.TextBoxFor(model => model.Cnpj, new { @class = "form-control" })
-                                                        </div>
-                                                    </div>
-                                                    <div class="control-group">
-                                                        @Html.LabelFor(model => model.InscricaoEstadual, new { @class = "control-label col-md-2" })
-                                                        <div class="controls">
-                                                            @Html.TextBoxFor(model => model.InscricaoEstadual, new { @class = "form-control" })
-                                                        </div>
-                                                    </div>
-                                                    <div class="control-group">
-                                                        @Html.LabelFor(model => model.InscricaoMunicipal, new { @class = "control-label col-md-2" })
-                                                        <div class="controls">
-                                                            @Html.TextBoxFor(model => model.InscricaoMunicipal, new { @class = "form-control" })
-                                                        </div>
-                                                    </div>
-                                                    <div class="control-group">
-                                                        @Html.LabelFor(model => model.Endereco, new { @class = "control-label col-md-2" })
-                                                        <div class="controls">
-                                                            @Html.TextBoxFor(model => model.Endereco, new { @class = "form-control" })
-                                                        </div>
-                                                    </div>
-                                                    <div class="control-group">
-                                                        @Html.LabelFor(model => model.objCidade, new { @class = "control-label col-md-2" })
-                                                        <div class="controls">
-                                                            @Html.DropDownList("CidadeId", null, string.Empty, new { @class = "form-control" })
-                                                        </div>
-                                                    </div>
-                                                    <div class="control-group">
-                                                        @Html.LabelFor(model => model.Cep, new { @class = "control-label col-md-2" })
-                                                        <div class="controls">
-                                                            @Html.TextBoxFor(model => model.Cep, new { id="Cep", @class = "form-control" })
-                                                        </div>
-                                                    </div>
-                                                    <div class="control-group">
-                                                        @Html.LabelFor(model => model.Numero, new { @class = "control-label col-md-2" })
-                                                        <div class="controls">
-                                                            @Html.TextBoxFor(model => model.Numero, new { @class = "form-control" })
-                                                        </div>
-                                                    </div>
-                                                    <div class="control-group">
-                                                        @Html.LabelFor(model => model.Bairro, new { @class = "control-label col-md-2" })
-                                                        <div class="controls">
-                                                            @Html.TextBoxFor(model => model.Bairro, new { @class = "form-control" })
-                                                        </div>
-                                                    </div>
-                                                    <div class="control-group">
-                                                        @Html.LabelFor(model => model.Telefone, new { @class = "control-label col-md-2" })
-                                                        <div class="controls">
-                                                            @Html.TextBoxFor(model => model.Telefone, new { id ="fixo", @class = "form-control" })
-                                                        </div>
-                                                    </div>
-                                                    <div class="control-group">
-                                                        @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
-                                                        <div class="controls">
-                                                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-actions">
-                                                        <button type="submit" class="btn btn-primary">Salvar</button>
-                                                        
-                                                        <a class="btn btn-danger" href="@Url.Action("Listar", "Cliente")" onclick="return confirm('Deseja realmente sair?'); ">Cancelar</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> <!-- /widget-content -->
-
-        </div> <!-- /widget -->
-
-    </div> <!-- /span12 -->
+            <a class="btn btn-danger" href="@Url.Action("Listar", "Cliente")" onclick="return confirm('Deseja realmente sair?'); ">Cancelar</a>
+        </div>
+    </div>
 }
 
 <script>
+
+    function pessoa(tipoPessoa) {
+
+        if (tipoPessoa == "pessoaFisica") {
+
+            document.getElementById("sexo").style.visibility = "visible";
+
+            document.getElementById("cpf").style.visibility = "visible";
+
+            document.getElementById("rg").style.visibility = "visible";
+
+            document.getElementById("cnpj").style.visibility = "hidden";
+
+            document.getElementById("inscricaoM").style.visibility = "hidden";
+
+        } else if (tipoPessoa == "pessoaJuridica") {
+
+            document.getElementById("sexo").style.visibility = "hidden";
+
+            document.getElementById("cpf").style.visibility = "hidden";
+
+            document.getElementById("rg").style.visibility = "hidden";
+
+            document.getElementById("cnpj").style.visibility = "visible";
+
+            document.getElementById("inscricaoM").style.visibility = "visible";
+
+        }
+
+    }
+
+
     $("#Rg").mask("9999999");
     $("#Cpf").mask("999.999.999-99");
     $("#Telefone").mask("(99) 9 9999-9999");

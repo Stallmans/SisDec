@@ -12,14 +12,16 @@ namespace SisDec.Models
         public int PecaRequisicaoId { get; set; }
 
         
-        public Requisicao objRequisicao { get; set; }
+        public PecaRequisicao()
+        {
+            this.ObjPeca = ObjPeca;
+            this.Quantidade = Quantidade;
+            this.Valor = Valor;
+        }
+
         public Peca ObjPeca { get; set; }
         public int Quantidade { get; set; }
+        public decimal Valor { get; set; }
 
-        public PecaRequisicao(Requisicao req, Peca peca)
-        {
-            this.objRequisicao = req;
-            this.ObjPeca = peca;
-        }
     }
 }
