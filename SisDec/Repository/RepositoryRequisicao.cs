@@ -41,15 +41,12 @@ namespace SisDec.Repository
             Conexao.Crud(comando);
         }
 
-        public IList<Cidade> BuscarPorConcessionaria(string concessionaria)
+        public IList<Requisicao> BuscarTodos()
         {
-            IList<Cidade> listaconcessionaria = new List<Cidade>();
-
+            IList<Requisicao> ListaRequsicao = new List<Requisicao>();
             SqlCommand comando = new SqlCommand();
             comando.CommandType = CommandType.Text;
-            comando.CommandText = "SELECT Concessionaria FROM Concessionaria WHERE concessionaria LIKE @Concessionaria";
-
-            comando.Parameters.AddWithValue("@concessionaria", string.Format("%{0}%", concessionaria));
+            comando.CommandText = "SELECT * FROM Requisicao";
 
             SqlDataReader dr = Conexao.Selecionar(comando);
 
@@ -57,21 +54,20 @@ namespace SisDec.Repository
             {
                 while (dr.Read())
                 {
-                    Cidade ciade = new Cidade();
-
-                   // Concessionaria.id = Convert.ToInt32(dr["concessionariaId"]);
-
-
-                  //  listaconcessionaria.Add(concessionaria);
+                    Requisicao objRequisicao = new Requisicao();
+                    objRequisicao.RequisicaoId = Convert.ToInt32(dr["RequisicaoId"]);
+                    objRequisicao.NumeroRequisicao = Convert.ToInt32(dr["NumeroRequisicao"]);
+                    objRequisicao.ObjCliente.Nome = dr["Nome"].ToString();
+                    objRequisicao.objPeca.PecaId = Convert.ToInt32(dr["PecaId"]);
+                    ListaRequsicao.Add(objRequisicao);
                 }
             }
             else
             {
-                listaconcessionaria = null;
+                ListaRequsicao = null;
             }
-            return listaconcessionaria;
-
-
+            dr.Close();
+            return ListaRequsicao;
         }
     }
 }

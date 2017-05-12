@@ -11,10 +11,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using SisDec.Repository;
 
 namespace SisDec.Models
 {
 	public class Requisicao {
+
+        public int RequisicaoId { get; set; }
 
         [Display(Name = "Numero da Requisição")]
         public int NumeroRequisicao { get; set; }
@@ -34,6 +37,10 @@ namespace SisDec.Models
         public Cliente ObjCliente { get; set; }
         public Peca objPeca { get; set; }
 
+        public IList<Requisicao> BuscarTodos()
+        {
+            return new RepositoryRequisicao().BuscarTodos();
+        }
 
     }//end Requisicao
 

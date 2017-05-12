@@ -94,6 +94,37 @@ namespace SisDec.Repository
             return ListaPeca;
         }
 
+        public IList<Peca> BuscarPorReferencia(string referencia)
+        {
+            IList<Peca> ListaPeca = new List<Peca>();
+            SqlCommand comando = new SqlCommand();
+            comando.CommandType = CommandType.Text;
+            comando.CommandText = "SELECT * FROM Pecas where referencia like @referencia";
+
+            comando.Parameters.AddWithValue("@referencia", string.Format("%{0}%", referencia));
+
+            SqlDataReader dr = Conexao.Selecionar(comando);
+
+            if (dr.HasRows)
+            {
+                while (dr.Read())
+                {
+                    Peca objPeca = new Peca();
+                    objPeca.PecaId = Convert.ToInt32(dr["pecaId"]);
+                    objPeca.Referencia = dr["referencia"].ToString();
+                    objPeca.Descricao = dr["descricao"].ToString();
+                    objPeca.Valor = Convert.ToDecimal(dr["valor"]);
+                    ListaPeca.Add(objPeca);
+                }
+            }
+            else
+            {
+                ListaPeca = null;
+            }
+            dr.Close();
+            return ListaPeca;
+        }
+
     }
 
 

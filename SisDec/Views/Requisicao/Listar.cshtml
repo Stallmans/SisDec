@@ -1,7 +1,73 @@
-﻿
+﻿@model IEnumerable<SisDec.Models.Requisicao>
 @{
     ViewBag.Title = "Listar";
 }
 
 <h2>Listar</h2>
 
+<table>
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumeroRequisicao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ObjCliente.Nome)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item1 in Model)
+    {
+        <tr>
+            <td>
+                <button class="btnDetails">+</button>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item1.NumeroRequisicao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item1.ObjCliente.Nome)
+            </td>
+        </tr>
+        <tr class="collapse">
+            <td colspan="3">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Referência</th>
+                            <th>Descricao</th>
+                            <th>Valor</th>
+                            @*<th>Quantidade</th>
+                            <th>Subtotal</th>*@
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in item1.ListaPecaRequisicao)
+                {
+                            <tr>
+                                <td>@item.ObjPeca.Referencia</td>
+                                <td>@item.ObjPeca.Descricao</td>
+                                <td>@item.ObjPeca.Valor</td>
+                                @*<td>@item.ObjPeca.Quantidade</td>
+                                <td>@(item.ObjPeca.Valor * item.ObjPeca.Quantidade)</td>*@
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    }
+</table>
+
+
+@section scripts{
+    <script>
+        $(function () {
+            $(".btnDetails").click(function () {
+                $(this).parent().parent().next().toggleClass("collapse");
+                $(this).text($(this).text() == "+"?"-":"+");
+            });
+        });
+    </script>
+}
