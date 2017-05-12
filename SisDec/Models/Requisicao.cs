@@ -26,10 +26,7 @@ namespace SisDec.Models
         public DateTime DataPedido { get; set; }
 
         [Display(Name = "Data da Requisicao")]
-        public DateTime DataRequisicao { get; set; } = DateTime.Now;
-
-
-
+        public DateTime DataRequisicao { get; set; }
 
         public string Finalidade { get; set; }
 
